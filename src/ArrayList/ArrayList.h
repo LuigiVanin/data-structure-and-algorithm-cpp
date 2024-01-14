@@ -1,6 +1,8 @@
 #ifndef ARRAYLIST_H
 #define ARRAYLIST_H
 
+#pragma once
+
 #include <cstdlib>
 
 template <class T>

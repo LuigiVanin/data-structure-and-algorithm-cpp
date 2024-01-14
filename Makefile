@@ -129,30 +129,6 @@ data_structure_and_algorithm_cpp/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structure_and_algorithm_cpp.dir/build.make CMakeFiles/data_structure_and_algorithm_cpp.dir/build
 .PHONY : data_structure_and_algorithm_cpp/fast
 
-src/LinkedList/LinkedList.o: src/LinkedList/LinkedList.cpp.o
-.PHONY : src/LinkedList/LinkedList.o
-
-# target to build an object file
-src/LinkedList/LinkedList.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structure_and_algorithm_cpp.dir/build.make CMakeFiles/data_structure_and_algorithm_cpp.dir/src/LinkedList/LinkedList.cpp.o
-.PHONY : src/LinkedList/LinkedList.cpp.o
-
-src/LinkedList/LinkedList.i: src/LinkedList/LinkedList.cpp.i
-.PHONY : src/LinkedList/LinkedList.i
-
-# target to preprocess a source file
-src/LinkedList/LinkedList.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structure_and_algorithm_cpp.dir/build.make CMakeFiles/data_structure_and_algorithm_cpp.dir/src/LinkedList/LinkedList.cpp.i
-.PHONY : src/LinkedList/LinkedList.cpp.i
-
-src/LinkedList/LinkedList.s: src/LinkedList/LinkedList.cpp.s
-.PHONY : src/LinkedList/LinkedList.s
-
-# target to generate assembly for a file
-src/LinkedList/LinkedList.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structure_and_algorithm_cpp.dir/build.make CMakeFiles/data_structure_and_algorithm_cpp.dir/src/LinkedList/LinkedList.cpp.s
-.PHONY : src/LinkedList/LinkedList.cpp.s
-
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -186,9 +162,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... data_structure_and_algorithm_cpp"
-	@echo "... src/LinkedList/LinkedList.o"
-	@echo "... src/LinkedList/LinkedList.i"
-	@echo "... src/LinkedList/LinkedList.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

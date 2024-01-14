@@ -10,6 +10,6 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 add_executable(data_structure_and_algorithm_cpp src/main.cpp
         src/ArrayList/ArrayList.h
-        src/LinkedList/LinkedList.cpp
         src/LinkedList/LinkedList.h
+        src/LinkedList/LinkedNode.h
         )

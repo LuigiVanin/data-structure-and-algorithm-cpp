@@ -76,6 +76,25 @@ auto ArrayList<T>::Insert(T value, int pos) -> void
     }
 }
 
+template <class T>
+auto ArrayList<T>::Remove(int pos) -> void
+{
+    if (this->length <= pos)
+        return;
+
+    if (pos == this->length - 1)
+    {
+        this->Pop();
+        return;
+    }
+
+    this->length--;
+    for (int i = pos; i < this->length; i++)
+    {
+        this->arr[i] = this->arr[i + 1];
+    }
+}
+
 // Private
 
 template <class T>
@@ -91,3 +110,49 @@ auto ArrayList<T>::resize() -> void
         throw std::runtime_error(error_message);
     }
 }
+
+// auto list = new ArrayList<int>();
+
+// list->Print();
+// list->Push(1);
+// list->Push(2);
+// list->Push(3);
+// list->Push(4);
+// list->Push(5);
+// list->Push(6);
+// list->Push(7);
+
+// list->Print();
+// list->Push(8);
+// list->Push(9);
+// list->Push(10);
+// list->Push(11);
+// list->Push(12);
+// list->Push(13);
+// list->Push(14);
+// list->Print();
+
+// list->Push(15);
+// list->Push(16);
+// list->Push(17);
+// list->Push(18);
+// list->Push(19);
+// list->Push(20);
+// list->Push(21);
+
+// list->Print();
+
+// list->Insert(1000, 2);
+// list->Print();
+// list->Insert(1000, 0);
+// list->Print();
+
+// list->Insert(1000, list->length);
+
+// list->Print();
+
+// list->Remove(2);
+// list->Remove(list->length - 1);
+// list->Remove(0);
+
+// list->Print();
