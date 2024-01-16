@@ -16,6 +16,8 @@ public:
     ~LinkedList();
 
     auto Push(T value) -> Node<T> *;
+    auto Shift(T value) -> Node<T> *;
+    auto Insert(T value, int pos) -> Node<T> *;
     auto Print() -> void;
 
 private:
