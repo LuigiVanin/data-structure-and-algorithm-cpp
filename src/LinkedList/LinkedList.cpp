@@ -28,16 +28,16 @@ auto LinkedList<T>::Push(T value) -> Node<T> *
         return nullptr;
     }
 
-    auto temp_next = this->head->Next();
+    auto temp = this->head;
 
-    while (temp_next != nullptr)
+    while (temp->Next() != nullptr)
     {
-        temp_next = temp_next->Next();
+        temp = temp->Next();
     }
 
-    temp_next->Append(value);
+    auto next_value = temp->Append(value);
     this->length++;
-    return temp_next->Next();
+    return next_value;
 }
 
 template <class T>
@@ -53,11 +53,11 @@ auto LinkedList<T>::Shift(T value) -> Node<T> *
     }
 
     auto temp = this->head;
-    new_node->next = temp;
+    new_node->Append(temp);
     this->head = new_node;
+    return new_node;
 }
 
-// TODO: Test this function
 template <class T>
 auto LinkedList<T>::Insert(T value, int pos) -> Node<T> *
 {
@@ -70,19 +70,22 @@ auto LinkedList<T>::Insert(T value, int pos) -> Node<T> *
     if (pos == (this->length - 1))
         return this->Push(value);
 
+    if (this->head == nullptr)
+        return nullptr;
+
     auto temp = this->head;
 
-    for (int i = 0; i < pos; i++)
+    for (int i = 0; i < pos - 1; i++)
     {
-        temp = temp->Next();
-        if (temp == nullptr)
+        if (temp->Next() == nullptr)
             return nullptr;
+        temp = temp->Next();
     }
 
     auto new_node = new Node(value);
-    auto next = temp->next;
-    new_node->next = next;
-    temp->next = new_node;
+    auto temp_next = temp->Next();
+    new_node->Append(temp_next);
+    temp->Append(new_node);
 
     return new_node;
 }

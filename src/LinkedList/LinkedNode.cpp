@@ -27,3 +27,12 @@ auto Node<T>::Append(T value) -> Node<T> *
 
     return new_node;
 }
+
+template <class T>
+auto Node<T>::Append(Node<T> *value) -> Node<T> *
+{
+    auto new_node = value;
+    this->next = new_node;
+
+    return new_node;
+}

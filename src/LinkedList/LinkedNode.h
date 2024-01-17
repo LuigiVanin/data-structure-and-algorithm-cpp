@@ -14,6 +14,7 @@ public:
 
     auto Next() -> Node<T> *;
     auto Append(T value) -> Node<T> *;
+    auto Append(Node<T> *value) -> Node<T> *;
 
 private:
     Node<T> *next;
