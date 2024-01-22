@@ -11,6 +11,7 @@ class LinkedList
 {
 public:
     int length = 0;
+    Node<T> *head = nullptr;
 
     LinkedList();
     ~LinkedList();
@@ -21,7 +22,6 @@ public:
     auto Print() -> void;
 
 private:
-    Node<T> *head = nullptr;
 };
 
 #include "LinkedList.cpp"

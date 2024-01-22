@@ -1,4 +1,5 @@
 #include "LinkedNode.h"
+#include <cstdlib>
 
 template <class T>
 Node<T>::Node(T value)
@@ -10,7 +11,8 @@ Node<T>::Node(T value)
 template <class T>
 Node<T>::~Node()
 {
-    delete this->next;
+    if (this->Next() != nullptr)
+        delete this->next;
 }
 
 template <class T>

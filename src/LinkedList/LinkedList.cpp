@@ -1,6 +1,7 @@
 #include "LinkedList.h"
 #include "LinkedNode.h"
 #include <iostream>
+#include <cstdlib>
 
 template <class T>
 LinkedList<T>::LinkedList()
@@ -13,7 +14,8 @@ LinkedList<T>::LinkedList()
 template <class T>
 LinkedList<T>::~LinkedList()
 {
-    delete this->head;
+    if (this->head != nullptr)
+        delete this->head;
 }
 
 template <class T>

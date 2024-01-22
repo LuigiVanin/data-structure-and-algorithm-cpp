@@ -8,7 +8,6 @@
 template <class T>
 ArrayList<T>::ArrayList()
 {
-    std::cout << "Criando uma Array List" << std::endl;
     this->arr = new T[this->capacity];
     this->length = 0;
 }
@@ -16,7 +15,6 @@ ArrayList<T>::ArrayList()
 template <class T>
 ArrayList<T>::~ArrayList()
 {
-    std::cout << "Destruindo uma Array List" << std::endl;
     delete[] this->arr;
 }
 
