@@ -65,6 +65,16 @@ CMAKE_BINARY_DIR = /home/htnek/Documentos/repos/data-structure-and-algorithm-cpp
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	/usr/local/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
@@ -117,6 +127,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named data_structure_and_algorithm_cpp_lib
+
+# Build rule for target.
+data_structure_and_algorithm_cpp_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 data_structure_and_algorithm_cpp_lib
+.PHONY : data_structure_and_algorithm_cpp_lib
+
+# fast build rule for target.
+data_structure_and_algorithm_cpp_lib/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structure_and_algorithm_cpp_lib.dir/build.make CMakeFiles/data_structure_and_algorithm_cpp_lib.dir/build
+.PHONY : data_structure_and_algorithm_cpp_lib/fast
+
+#=============================================================================
 # Target rules for targets named data_structure_and_algorithm_cpp
 
 # Build rule for target.
@@ -128,6 +151,32 @@ data_structure_and_algorithm_cpp: cmake_check_build_system
 data_structure_and_algorithm_cpp/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structure_and_algorithm_cpp.dir/build.make CMakeFiles/data_structure_and_algorithm_cpp.dir/build
 .PHONY : data_structure_and_algorithm_cpp/fast
+
+#=============================================================================
+# Target rules for targets named cpp_test
+
+# Build rule for target.
+cpp_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cpp_test
+.PHONY : cpp_test
+
+# fast build rule for target.
+cpp_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_test.dir/build.make CMakeFiles/cpp_test.dir/build
+.PHONY : cpp_test/fast
+
+#=============================================================================
+# Target rules for targets named cpp_test_2
+
+# Build rule for target.
+cpp_test_2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cpp_test_2
+.PHONY : cpp_test_2
+
+# fast build rule for target.
+cpp_test_2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_test_2.dir/build.make CMakeFiles/cpp_test_2.dir/build
+.PHONY : cpp_test_2/fast
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -153,6 +202,54 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structure_and_algorithm_cpp.dir/build.make CMakeFiles/data_structure_and_algorithm_cpp.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+tests/test-2.o: tests/test-2.cpp.o
+.PHONY : tests/test-2.o
+
+# target to build an object file
+tests/test-2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_test_2.dir/build.make CMakeFiles/cpp_test_2.dir/tests/test-2.cpp.o
+.PHONY : tests/test-2.cpp.o
+
+tests/test-2.i: tests/test-2.cpp.i
+.PHONY : tests/test-2.i
+
+# target to preprocess a source file
+tests/test-2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_test_2.dir/build.make CMakeFiles/cpp_test_2.dir/tests/test-2.cpp.i
+.PHONY : tests/test-2.cpp.i
+
+tests/test-2.s: tests/test-2.cpp.s
+.PHONY : tests/test-2.s
+
+# target to generate assembly for a file
+tests/test-2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_test_2.dir/build.make CMakeFiles/cpp_test_2.dir/tests/test-2.cpp.s
+.PHONY : tests/test-2.cpp.s
+
+tests/test.o: tests/test.cpp.o
+.PHONY : tests/test.o
+
+# target to build an object file
+tests/test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_test.dir/build.make CMakeFiles/cpp_test.dir/tests/test.cpp.o
+.PHONY : tests/test.cpp.o
+
+tests/test.i: tests/test.cpp.i
+.PHONY : tests/test.i
+
+# target to preprocess a source file
+tests/test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_test.dir/build.make CMakeFiles/cpp_test.dir/tests/test.cpp.i
+.PHONY : tests/test.cpp.i
+
+tests/test.s: tests/test.cpp.s
+.PHONY : tests/test.s
+
+# target to generate assembly for a file
+tests/test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_test.dir/build.make CMakeFiles/cpp_test.dir/tests/test.cpp.s
+.PHONY : tests/test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -161,10 +258,20 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... test"
+	@echo "... cpp_test"
+	@echo "... cpp_test_2"
 	@echo "... data_structure_and_algorithm_cpp"
+	@echo "... data_structure_and_algorithm_cpp_lib"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... tests/test-2.o"
+	@echo "... tests/test-2.i"
+	@echo "... tests/test-2.s"
+	@echo "... tests/test.o"
+	@echo "... tests/test.i"
+	@echo "... tests/test.s"
 .PHONY : help
 
 
