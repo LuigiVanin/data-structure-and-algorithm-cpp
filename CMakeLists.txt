@@ -25,12 +25,21 @@ add_executable(${PROJECT_BIN_NAME} src/main.cpp)
 
 target_link_libraries(${PROJECT_BIN_NAME} ${PROJECT_LIB_NAME})
 
-add_executable(cpp_test tests/test.cpp)
-add_executable(cpp_test_2 tests/test-2.cpp)
+# target_link_libraries(cpp_test PRIVATE ${PROJECT_LIB_NAME})
 
-target_link_libraries(cpp_test PRIVATE ${PROJECT_LIB_NAME})
+file(GLOB SOURCES tests/*.cpp)
 
 enable_testing()
 
-add_test(FIRST_TEST ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cpp_test)
-add_test(SECOND_TEST ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/cpp_test_2)
+
+foreach(test_source ${SOURCES})
+    get_filename_component(test_file_name ${test_source} NAME)
+    get_filename_component(test_exec_name ${test_source} NAME_WE)
+    
+    message(${test_file_name} - ${test_exec_name})
+
+    add_executable(project_${test_exec_name} tests/${test_file_name})
+    add_test(NAME ${test_exec_name} COMMAND project_${test_exec_name})
+endforeach()
+
+

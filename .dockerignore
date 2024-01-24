@@ -6,3 +6,6 @@ CMakeCache.txt
 CTestTestfile.cmake
 DartConfiguration.tcl
 Testing/
+license.md
+Makefile
+.vscode/

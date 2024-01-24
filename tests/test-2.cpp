@@ -2,5 +2,6 @@
 
 int main()
 {
+    auto linked = new LinkedList<int>();
     return 0;
 }
