@@ -153,43 +153,30 @@ data_structure_and_algorithm_cpp/fast:
 .PHONY : data_structure_and_algorithm_cpp/fast
 
 #=============================================================================
-# Target rules for targets named project_mais_um_test
+# Target rules for targets named project_ArrayList
 
 # Build rule for target.
-project_mais_um_test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 project_mais_um_test
-.PHONY : project_mais_um_test
+project_ArrayList: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 project_ArrayList
+.PHONY : project_ArrayList
 
 # fast build rule for target.
-project_mais_um_test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_mais_um_test.dir/build.make CMakeFiles/project_mais_um_test.dir/build
-.PHONY : project_mais_um_test/fast
+project_ArrayList/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_ArrayList.dir/build.make CMakeFiles/project_ArrayList.dir/build
+.PHONY : project_ArrayList/fast
 
 #=============================================================================
-# Target rules for targets named project_test-2
+# Target rules for targets named project_second_test
 
 # Build rule for target.
-project_test-2: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 project_test-2
-.PHONY : project_test-2
+project_second_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 project_second_test
+.PHONY : project_second_test
 
 # fast build rule for target.
-project_test-2/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_test-2.dir/build.make CMakeFiles/project_test-2.dir/build
-.PHONY : project_test-2/fast
-
-#=============================================================================
-# Target rules for targets named project_test
-
-# Build rule for target.
-project_test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 project_test
-.PHONY : project_test
-
-# fast build rule for target.
-project_test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_test.dir/build.make CMakeFiles/project_test.dir/build
-.PHONY : project_test/fast
+project_second_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_second_test.dir/build.make CMakeFiles/project_second_test.dir/build
+.PHONY : project_second_test/fast
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -215,77 +202,53 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structure_and_algorithm_cpp.dir/build.make CMakeFiles/data_structure_and_algorithm_cpp.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-tests/mais_um_test.o: tests/mais_um_test.cpp.o
-.PHONY : tests/mais_um_test.o
+tests/ArrayList.test.o: tests/ArrayList.test.cpp.o
+.PHONY : tests/ArrayList.test.o
 
 # target to build an object file
-tests/mais_um_test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_mais_um_test.dir/build.make CMakeFiles/project_mais_um_test.dir/tests/mais_um_test.cpp.o
-.PHONY : tests/mais_um_test.cpp.o
+tests/ArrayList.test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_ArrayList.dir/build.make CMakeFiles/project_ArrayList.dir/tests/ArrayList.test.cpp.o
+.PHONY : tests/ArrayList.test.cpp.o
 
-tests/mais_um_test.i: tests/mais_um_test.cpp.i
-.PHONY : tests/mais_um_test.i
+tests/ArrayList.test.i: tests/ArrayList.test.cpp.i
+.PHONY : tests/ArrayList.test.i
 
 # target to preprocess a source file
-tests/mais_um_test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_mais_um_test.dir/build.make CMakeFiles/project_mais_um_test.dir/tests/mais_um_test.cpp.i
-.PHONY : tests/mais_um_test.cpp.i
+tests/ArrayList.test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_ArrayList.dir/build.make CMakeFiles/project_ArrayList.dir/tests/ArrayList.test.cpp.i
+.PHONY : tests/ArrayList.test.cpp.i
 
-tests/mais_um_test.s: tests/mais_um_test.cpp.s
-.PHONY : tests/mais_um_test.s
+tests/ArrayList.test.s: tests/ArrayList.test.cpp.s
+.PHONY : tests/ArrayList.test.s
 
 # target to generate assembly for a file
-tests/mais_um_test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_mais_um_test.dir/build.make CMakeFiles/project_mais_um_test.dir/tests/mais_um_test.cpp.s
-.PHONY : tests/mais_um_test.cpp.s
+tests/ArrayList.test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_ArrayList.dir/build.make CMakeFiles/project_ArrayList.dir/tests/ArrayList.test.cpp.s
+.PHONY : tests/ArrayList.test.cpp.s
 
-tests/test-2.o: tests/test-2.cpp.o
-.PHONY : tests/test-2.o
+tests/second_test.o: tests/second_test.cpp.o
+.PHONY : tests/second_test.o
 
 # target to build an object file
-tests/test-2.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_test-2.dir/build.make CMakeFiles/project_test-2.dir/tests/test-2.cpp.o
-.PHONY : tests/test-2.cpp.o
+tests/second_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_second_test.dir/build.make CMakeFiles/project_second_test.dir/tests/second_test.cpp.o
+.PHONY : tests/second_test.cpp.o
 
-tests/test-2.i: tests/test-2.cpp.i
-.PHONY : tests/test-2.i
-
-# target to preprocess a source file
-tests/test-2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_test-2.dir/build.make CMakeFiles/project_test-2.dir/tests/test-2.cpp.i
-.PHONY : tests/test-2.cpp.i
-
-tests/test-2.s: tests/test-2.cpp.s
-.PHONY : tests/test-2.s
-
-# target to generate assembly for a file
-tests/test-2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_test-2.dir/build.make CMakeFiles/project_test-2.dir/tests/test-2.cpp.s
-.PHONY : tests/test-2.cpp.s
-
-tests/test.o: tests/test.cpp.o
-.PHONY : tests/test.o
-
-# target to build an object file
-tests/test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_test.dir/build.make CMakeFiles/project_test.dir/tests/test.cpp.o
-.PHONY : tests/test.cpp.o
-
-tests/test.i: tests/test.cpp.i
-.PHONY : tests/test.i
+tests/second_test.i: tests/second_test.cpp.i
+.PHONY : tests/second_test.i
 
 # target to preprocess a source file
-tests/test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_test.dir/build.make CMakeFiles/project_test.dir/tests/test.cpp.i
-.PHONY : tests/test.cpp.i
+tests/second_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_second_test.dir/build.make CMakeFiles/project_second_test.dir/tests/second_test.cpp.i
+.PHONY : tests/second_test.cpp.i
 
-tests/test.s: tests/test.cpp.s
-.PHONY : tests/test.s
+tests/second_test.s: tests/second_test.cpp.s
+.PHONY : tests/second_test.s
 
 # target to generate assembly for a file
-tests/test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_test.dir/build.make CMakeFiles/project_test.dir/tests/test.cpp.s
-.PHONY : tests/test.cpp.s
+tests/second_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_second_test.dir/build.make CMakeFiles/project_second_test.dir/tests/second_test.cpp.s
+.PHONY : tests/second_test.cpp.s
 
 # Help Target
 help:
@@ -298,21 +261,17 @@ help:
 	@echo "... test"
 	@echo "... data_structure_and_algorithm_cpp"
 	@echo "... data_structure_and_algorithm_cpp_lib"
-	@echo "... project_mais_um_test"
-	@echo "... project_test"
-	@echo "... project_test-2"
+	@echo "... project_ArrayList"
+	@echo "... project_second_test"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... tests/mais_um_test.o"
-	@echo "... tests/mais_um_test.i"
-	@echo "... tests/mais_um_test.s"
-	@echo "... tests/test-2.o"
-	@echo "... tests/test-2.i"
-	@echo "... tests/test-2.s"
-	@echo "... tests/test.o"
-	@echo "... tests/test.i"
-	@echo "... tests/test.s"
+	@echo "... tests/ArrayList.test.o"
+	@echo "... tests/ArrayList.test.i"
+	@echo "... tests/ArrayList.test.s"
+	@echo "... tests/second_test.o"
+	@echo "... tests/second_test.i"
+	@echo "... tests/second_test.s"
 .PHONY : help
 
 

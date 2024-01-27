@@ -1,19 +1,21 @@
 flag=$1
-
-echo "flag: $flag"
+test_target=$2
+for last; do true; done
 
 cmake .
 make 
 
 if [ "$flag" = "test" ]; then
-    ctest
+    target = ''
+    if [ "$test_target" != "clean" ]; then
+        target="-R ^$test_target"
+    fi
+    ctest -C Debug -T test --output-on-failure $target
 else 
     ./bin/data_structure_and_algorithm_cpp
 fi
 
-echo "run.sh end $2"
-
-if [ "$2" = "clean" ]; then
+if [ "$last" = "clean" ]; then
     rm -rf ./bin/
     rm -rf ./build/
     rm -rf ./Testing/

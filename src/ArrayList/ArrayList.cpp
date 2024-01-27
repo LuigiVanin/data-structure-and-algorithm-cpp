@@ -6,8 +6,9 @@
 // Public
 
 template <class T>
-ArrayList<T>::ArrayList()
+ArrayList<T>::ArrayList(int initial_capacity)
 {
+    this->capacity = initial_capacity;
     this->arr = new T[this->capacity];
     this->length = 0;
 }
@@ -22,7 +23,9 @@ template <class T>
 auto ArrayList<T>::Push(T value) -> void
 {
     if (this->length == this->capacity)
+    {
         this->resize();
+    }
 
     this->arr[this->length] = value;
     this->length++;
@@ -51,9 +54,20 @@ auto ArrayList<T>::Pop(void) -> void
 }
 
 template <class T>
+auto ArrayList<T>::At(int index) -> T
+{
+    if (index > this->length - 1 || index < 0)
+    {
+        const char *error_message = "O index está fora dos limites";
+        throw std::runtime_error(error_message);
+    }
+    return this->arr[index];
+}
+
+template <class T>
 auto ArrayList<T>::Insert(T value, int pos) -> void
 {
-    if (this->length < pos)
+    if (this->length < pos || pos < 0)
         return;
 
     if (this->length == this->capacity)
@@ -93,20 +107,25 @@ auto ArrayList<T>::Remove(int pos) -> void
     }
 }
 
+template <class T>
+auto ArrayList<T>::GetCapacity() -> int
+{
+    return this->capacity;
+}
+
 // Private
 
 template <class T>
 auto ArrayList<T>::resize() -> void
 {
     this->capacity *= 2;
-    auto new_arr = static_cast<T *>(realloc(this->arr, this->capacity * sizeof(T)));
+    auto new_arr = new T[this->capacity];
 
-    if (new_arr == nullptr)
-    {
-        const char *error_message = "Falha na alocação de memória durante o redimensionamento.";
-        std::cerr << error_message << std::endl;
-        throw std::runtime_error(error_message);
-    }
+    for (int i = 0; i < this->length; i++)
+        new_arr[i] = this->arr[i];
+
+    delete[] this->arr;
+    this->arr = new_arr;
 }
 
 // auto list = new ArrayList<int>();
