@@ -6,7 +6,6 @@
 template <class T>
 LinkedList<T>::LinkedList()
 {
-    std::cout << "TESTE" << std::endl;
     this->length = 0;
     this->head = nullptr;
 }
@@ -16,6 +15,26 @@ LinkedList<T>::~LinkedList()
 {
     if (this->head != nullptr)
         delete this->head;
+}
+
+template <class T>
+auto LinkedList<T>::getHead() -> Node<T> *
+{
+    return this->head;
+}
+
+template <class T>
+auto LinkedList<T>::At(int index) -> T
+{
+    if (index > this->length - 1 || index < 0)
+        throw std::invalid_argument("Index out of bounds");
+
+    auto temp = this->head;
+
+    for (int i = 0; i < index; i++)
+        temp = temp->Next();
+
+    return temp->value;
 }
 
 template <class T>
@@ -47,10 +66,10 @@ auto LinkedList<T>::Shift(T value) -> Node<T> *
 {
     Node<T> *new_node = new Node<T>(value);
 
+    this->length++;
     if (this->head == nullptr)
     {
         this->head = new_node;
-        this->length++;
         return new_node;
     }
 
@@ -66,7 +85,6 @@ auto LinkedList<T>::Insert(T value, int pos) -> Node<T> *
     if (pos > this->length)
         return nullptr;
 
-    this->length++;
     if (pos == 0)
         return this->Shift(value);
     if (pos == (this->length - 1))
@@ -75,6 +93,7 @@ auto LinkedList<T>::Insert(T value, int pos) -> Node<T> *
     if (this->head == nullptr)
         return nullptr;
 
+    this->length++;
     auto temp = this->head;
 
     for (int i = 0; i < pos - 1; i++)
@@ -90,6 +109,35 @@ auto LinkedList<T>::Insert(T value, int pos) -> Node<T> *
     temp->Append(new_node);
 
     return new_node;
+}
+
+template <class T>
+auto LinkedList<T>::Pop() -> void
+{
+    if (this->head == nullptr)
+        return;
+
+    if (this->head->Next() == nullptr)
+    {
+        this->head = nullptr;
+        this->length--;
+        return;
+    }
+
+    auto temp = this->head;
+    this->length--;
+    for (int i = 0; i < this->length - 1; i++)
+        temp = temp->Next();
+
+    auto node_to_delete = temp->Next();
+    temp->Append(nullptr);
+    delete node_to_delete;
+}
+
+template <class T>
+auto LinkedList<T>::Remove(int index) -> void
+{
+    throw std::invalid_argument("Not implemented");
 }
 
 template <class T>

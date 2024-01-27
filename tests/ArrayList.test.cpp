@@ -16,7 +16,7 @@ TEST_CASE("Test ArrayList Initialization", "[ArrayList]")
     auto arr_custom = new ArrayList<int>(10);
     auto arr_custom_struct = new ArrayList<CustomStruct>();
 
-    SECTION("Int initialization values")
+    SECTION("Integer initialization values")
     {
 
         REQUIRE(arr_int->length == 0);

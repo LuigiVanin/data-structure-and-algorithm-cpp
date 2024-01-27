@@ -166,17 +166,17 @@ project_ArrayList/fast:
 .PHONY : project_ArrayList/fast
 
 #=============================================================================
-# Target rules for targets named project_second_test
+# Target rules for targets named project_LinkedList
 
 # Build rule for target.
-project_second_test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 project_second_test
-.PHONY : project_second_test
+project_LinkedList: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 project_LinkedList
+.PHONY : project_LinkedList
 
 # fast build rule for target.
-project_second_test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_second_test.dir/build.make CMakeFiles/project_second_test.dir/build
-.PHONY : project_second_test/fast
+project_LinkedList/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_LinkedList.dir/build.make CMakeFiles/project_LinkedList.dir/build
+.PHONY : project_LinkedList/fast
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -226,29 +226,29 @@ tests/ArrayList.test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_ArrayList.dir/build.make CMakeFiles/project_ArrayList.dir/tests/ArrayList.test.cpp.s
 .PHONY : tests/ArrayList.test.cpp.s
 
-tests/second_test.o: tests/second_test.cpp.o
-.PHONY : tests/second_test.o
+tests/LinkedList.test.o: tests/LinkedList.test.cpp.o
+.PHONY : tests/LinkedList.test.o
 
 # target to build an object file
-tests/second_test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_second_test.dir/build.make CMakeFiles/project_second_test.dir/tests/second_test.cpp.o
-.PHONY : tests/second_test.cpp.o
+tests/LinkedList.test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_LinkedList.dir/build.make CMakeFiles/project_LinkedList.dir/tests/LinkedList.test.cpp.o
+.PHONY : tests/LinkedList.test.cpp.o
 
-tests/second_test.i: tests/second_test.cpp.i
-.PHONY : tests/second_test.i
+tests/LinkedList.test.i: tests/LinkedList.test.cpp.i
+.PHONY : tests/LinkedList.test.i
 
 # target to preprocess a source file
-tests/second_test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_second_test.dir/build.make CMakeFiles/project_second_test.dir/tests/second_test.cpp.i
-.PHONY : tests/second_test.cpp.i
+tests/LinkedList.test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_LinkedList.dir/build.make CMakeFiles/project_LinkedList.dir/tests/LinkedList.test.cpp.i
+.PHONY : tests/LinkedList.test.cpp.i
 
-tests/second_test.s: tests/second_test.cpp.s
-.PHONY : tests/second_test.s
+tests/LinkedList.test.s: tests/LinkedList.test.cpp.s
+.PHONY : tests/LinkedList.test.s
 
 # target to generate assembly for a file
-tests/second_test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_second_test.dir/build.make CMakeFiles/project_second_test.dir/tests/second_test.cpp.s
-.PHONY : tests/second_test.cpp.s
+tests/LinkedList.test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_LinkedList.dir/build.make CMakeFiles/project_LinkedList.dir/tests/LinkedList.test.cpp.s
+.PHONY : tests/LinkedList.test.cpp.s
 
 # Help Target
 help:
@@ -262,16 +262,16 @@ help:
 	@echo "... data_structure_and_algorithm_cpp"
 	@echo "... data_structure_and_algorithm_cpp_lib"
 	@echo "... project_ArrayList"
-	@echo "... project_second_test"
+	@echo "... project_LinkedList"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
 	@echo "... tests/ArrayList.test.o"
 	@echo "... tests/ArrayList.test.i"
 	@echo "... tests/ArrayList.test.s"
-	@echo "... tests/second_test.o"
-	@echo "... tests/second_test.i"
-	@echo "... tests/second_test.s"
+	@echo "... tests/LinkedList.test.o"
+	@echo "... tests/LinkedList.test.i"
+	@echo "... tests/LinkedList.test.s"
 .PHONY : help
 
 
