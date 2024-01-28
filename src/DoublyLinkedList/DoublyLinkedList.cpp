@@ -2,6 +2,7 @@
 #include "DoublyLinkedNode.h"
 #include "../utils/errors.h"
 #include <cstdlib>
+#include <iostream>
 
 template <class T>
 DoublyLinkedList<T>::DoublyLinkedList()
@@ -17,8 +18,8 @@ DoublyLinkedList<T>::~DoublyLinkedList()
     if (this->head != nullptr)
         delete this->head;
 
-    if (this->tail != nullptr)
-        delete this->tail;
+    // if (this->tail != nullptr)
+    //     delete this->tail;
 }
 
 template <class T>
@@ -42,7 +43,21 @@ auto DoublyLinkedList<T>::getTail() -> DoublyLinkedNode<T> *
 template <class T>
 auto DoublyLinkedList<T>::Push(T value) -> DoublyLinkedNode<T> *
 {
-    throw new NotImplementedException();
+    auto new_node = new DoublyLinkedNode<T>(value);
+
+    this->length++;
+    if (this->head == nullptr && this->tail == nullptr)
+    {
+        this->head = new_node;
+        this->tail = new_node;
+        return new_node;
+    }
+
+    new_node->AttachPrev(this->tail);
+    this->tail->AttachNext(new_node);
+    this->tail = new_node;
+
+    return new_node;
 }
 
 template <class T>
@@ -54,13 +69,38 @@ auto DoublyLinkedList<T>::Shift(T value) -> DoublyLinkedNode<T> *
 template <class T>
 auto DoublyLinkedList<T>::At(int index) -> T
 {
-    throw new NotImplementedException();
+    if (index > this->length - 1 || index < 0)
+        throw std::invalid_argument("Index out of bounds");
+
+    auto temp = this->head;
+
+    for (int i = 0; i < index; i++)
+        temp = temp->Next();
+
+    return temp->value;
 }
 
 template <class T>
 auto DoublyLinkedList<T>::Pop() -> void
 {
-    throw new NotImplementedException();
+
+    if (this->length == 0)
+        return;
+
+    if (this->length == 1)
+    {
+        delete this->head;
+        this->head = nullptr;
+        this->tail = nullptr;
+        this->length--;
+        return;
+    }
+
+    this->length--;
+    auto temp = this->tail->Prev();
+    // this->tail->AttachPrev(nullptr);
+    temp->AttachNext(nullptr);
+    this->tail = temp;
 }
 
 template <class T>
@@ -72,7 +112,15 @@ auto DoublyLinkedList<T>::Unshift() -> void
 template <class T>
 auto DoublyLinkedList<T>::Print() -> void
 {
-    throw new NotImplementedException();
+    auto temp = this->head;
+
+    std::cout << "[";
+    while (temp != nullptr)
+    {
+        std::cout << temp->value << " -> ";
+        temp = temp->Next();
+    }
+    std::cout << "]\n";
 }
 
 template <class T>

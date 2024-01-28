@@ -6,7 +6,7 @@
 class NotImplementedException : public std::logic_error
 {
 public:
-    const char *what() const noexcept override { return "Function not yet implemented."; }
+    NotImplementedException() : std::logic_error("Function not yet implemented"){};
 };
 
 #endif

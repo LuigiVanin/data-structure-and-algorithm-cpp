@@ -12,8 +12,8 @@ DoublyLinkedNode<T>::DoublyLinkedNode(T value)
 template <class T>
 DoublyLinkedNode<T>::~DoublyLinkedNode()
 {
-    if (this->prev != nullptr)
-        delete this->prev;
+    // if (this->prev != nullptr)
+    //     delete this->prev;
     if (this->next != nullptr)
         delete this->next;
 }
@@ -21,13 +21,13 @@ DoublyLinkedNode<T>::~DoublyLinkedNode()
 template <class T>
 auto DoublyLinkedNode<T>::Next() -> DoublyLinkedNode<T> *
 {
-    return this->next();
+    return this->next;
 }
 
 template <class T>
 auto DoublyLinkedNode<T>::Prev() -> DoublyLinkedNode<T> *
 {
-    return this->prev();
+    return this->prev;
 }
 
 template <class T>
