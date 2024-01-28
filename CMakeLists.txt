@@ -18,6 +18,9 @@ add_library(
         src/ArrayList/ArrayList.h
         src/LinkedList/LinkedList.h
         src/LinkedList/LinkedNode.h
+        src/DoublyLinkedList/DoublyLinkedList.h
+        src/DoublyLinkedList/DoublyLinkedNode.h
+        src/utils/errors.h
 )
 
 set_target_properties(${PROJECT_LIB_NAME} PROPERTIES LINKER_LANGUAGE CXX)

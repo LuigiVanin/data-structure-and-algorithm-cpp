@@ -166,6 +166,19 @@ project_ArrayList/fast:
 .PHONY : project_ArrayList/fast
 
 #=============================================================================
+# Target rules for targets named project_DoublyLinkedList
+
+# Build rule for target.
+project_DoublyLinkedList: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 project_DoublyLinkedList
+.PHONY : project_DoublyLinkedList
+
+# fast build rule for target.
+project_DoublyLinkedList/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_DoublyLinkedList.dir/build.make CMakeFiles/project_DoublyLinkedList.dir/build
+.PHONY : project_DoublyLinkedList/fast
+
+#=============================================================================
 # Target rules for targets named project_LinkedList
 
 # Build rule for target.
@@ -226,6 +239,30 @@ tests/ArrayList.test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_ArrayList.dir/build.make CMakeFiles/project_ArrayList.dir/tests/ArrayList.test.cpp.s
 .PHONY : tests/ArrayList.test.cpp.s
 
+tests/DoublyLinkedList.test.o: tests/DoublyLinkedList.test.cpp.o
+.PHONY : tests/DoublyLinkedList.test.o
+
+# target to build an object file
+tests/DoublyLinkedList.test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_DoublyLinkedList.dir/build.make CMakeFiles/project_DoublyLinkedList.dir/tests/DoublyLinkedList.test.cpp.o
+.PHONY : tests/DoublyLinkedList.test.cpp.o
+
+tests/DoublyLinkedList.test.i: tests/DoublyLinkedList.test.cpp.i
+.PHONY : tests/DoublyLinkedList.test.i
+
+# target to preprocess a source file
+tests/DoublyLinkedList.test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_DoublyLinkedList.dir/build.make CMakeFiles/project_DoublyLinkedList.dir/tests/DoublyLinkedList.test.cpp.i
+.PHONY : tests/DoublyLinkedList.test.cpp.i
+
+tests/DoublyLinkedList.test.s: tests/DoublyLinkedList.test.cpp.s
+.PHONY : tests/DoublyLinkedList.test.s
+
+# target to generate assembly for a file
+tests/DoublyLinkedList.test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_DoublyLinkedList.dir/build.make CMakeFiles/project_DoublyLinkedList.dir/tests/DoublyLinkedList.test.cpp.s
+.PHONY : tests/DoublyLinkedList.test.cpp.s
+
 tests/LinkedList.test.o: tests/LinkedList.test.cpp.o
 .PHONY : tests/LinkedList.test.o
 
@@ -262,6 +299,7 @@ help:
 	@echo "... data_structure_and_algorithm_cpp"
 	@echo "... data_structure_and_algorithm_cpp_lib"
 	@echo "... project_ArrayList"
+	@echo "... project_DoublyLinkedList"
 	@echo "... project_LinkedList"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
@@ -269,6 +307,9 @@ help:
 	@echo "... tests/ArrayList.test.o"
 	@echo "... tests/ArrayList.test.i"
 	@echo "... tests/ArrayList.test.s"
+	@echo "... tests/DoublyLinkedList.test.o"
+	@echo "... tests/DoublyLinkedList.test.i"
+	@echo "... tests/DoublyLinkedList.test.s"
 	@echo "... tests/LinkedList.test.o"
 	@echo "... tests/LinkedList.test.i"
 	@echo "... tests/LinkedList.test.s"
