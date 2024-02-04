@@ -22,6 +22,7 @@ add_library(
         src/DoublyLinkedList/DoublyLinkedList.h
         src/DoublyLinkedList/DoublyLinkedNode.h
         src/ArrayStack/ArrayStack.h
+        src/LinkedQueue/LinkedQueue.h
         src/utils/errors.h
 )
 
@@ -30,8 +31,6 @@ set_target_properties(${PROJECT_LIB_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 add_executable(${PROJECT_BIN_NAME} src/main.cpp)
 
 target_link_libraries(${PROJECT_BIN_NAME} ${PROJECT_LIB_NAME})
-
-# target_link_libraries(cpp_test PRIVATE ${PROJECT_LIB_NAME})
 
 file(GLOB SOURCES tests/*.cpp)
 

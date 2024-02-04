@@ -204,6 +204,19 @@ project_LinkedList/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_LinkedList.dir/build.make CMakeFiles/project_LinkedList.dir/build
 .PHONY : project_LinkedList/fast
 
+#=============================================================================
+# Target rules for targets named project_LinkedQueue
+
+# Build rule for target.
+project_LinkedQueue: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 project_LinkedQueue
+.PHONY : project_LinkedQueue
+
+# fast build rule for target.
+project_LinkedQueue/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_LinkedQueue.dir/build.make CMakeFiles/project_LinkedQueue.dir/build
+.PHONY : project_LinkedQueue/fast
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -324,6 +337,30 @@ tests/LinkedList.test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_LinkedList.dir/build.make CMakeFiles/project_LinkedList.dir/tests/LinkedList.test.cpp.s
 .PHONY : tests/LinkedList.test.cpp.s
 
+tests/LinkedQueue.test.o: tests/LinkedQueue.test.cpp.o
+.PHONY : tests/LinkedQueue.test.o
+
+# target to build an object file
+tests/LinkedQueue.test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_LinkedQueue.dir/build.make CMakeFiles/project_LinkedQueue.dir/tests/LinkedQueue.test.cpp.o
+.PHONY : tests/LinkedQueue.test.cpp.o
+
+tests/LinkedQueue.test.i: tests/LinkedQueue.test.cpp.i
+.PHONY : tests/LinkedQueue.test.i
+
+# target to preprocess a source file
+tests/LinkedQueue.test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_LinkedQueue.dir/build.make CMakeFiles/project_LinkedQueue.dir/tests/LinkedQueue.test.cpp.i
+.PHONY : tests/LinkedQueue.test.cpp.i
+
+tests/LinkedQueue.test.s: tests/LinkedQueue.test.cpp.s
+.PHONY : tests/LinkedQueue.test.s
+
+# target to generate assembly for a file
+tests/LinkedQueue.test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_LinkedQueue.dir/build.make CMakeFiles/project_LinkedQueue.dir/tests/LinkedQueue.test.cpp.s
+.PHONY : tests/LinkedQueue.test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -339,6 +376,7 @@ help:
 	@echo "... project_ArrayStack"
 	@echo "... project_DoublyLinkedList"
 	@echo "... project_LinkedList"
+	@echo "... project_LinkedQueue"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
@@ -354,6 +392,9 @@ help:
 	@echo "... tests/LinkedList.test.o"
 	@echo "... tests/LinkedList.test.i"
 	@echo "... tests/LinkedList.test.s"
+	@echo "... tests/LinkedQueue.test.o"
+	@echo "... tests/LinkedQueue.test.i"
+	@echo "... tests/LinkedQueue.test.s"
 .PHONY : help
 
 

@@ -1,24 +1,25 @@
 #include <iostream>
 // #include "ArrayList/ArrayList.h"
 // #include "LinkedList/LinkedList.h"
-#include "DoublyLinkedList/DoublyLinkedList.h"
-#include "ArrayStack/ArrayStack.h"
+// #include "DoublyLinkedList/DoublyLinkedList.h"
+// #include "ArrayStack/ArrayStack.h"
+#include "LinkedQueue/LinkedQueue.h"
 
 int main()
 {
     std::cout << "Hello, World!!!" << std::endl;
-    auto stack = new ArrayStack<int>();
-    stack->Push(12);
-    stack->Push(78);
-    auto top = stack->Top();
-    std::cout << top << std::endl;
 
-    stack->Pop();
+    auto queue = new LinkedQueue<int>();
+    queue->Add(12);
+    queue->Add(1345);
+    queue->Add(111);
+    queue->Add(49);
 
-    top = stack->Top();
-    std::cout << top << std::endl;
+    std::cout << queue->Peek() << std::endl;
 
-    delete stack;
+    queue->Remove();
+
+    std::cout << queue->Peek() << std::endl;
 
     return 0;
 }
