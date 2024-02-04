@@ -166,6 +166,19 @@ project_ArrayList/fast:
 .PHONY : project_ArrayList/fast
 
 #=============================================================================
+# Target rules for targets named project_ArrayStack
+
+# Build rule for target.
+project_ArrayStack: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 project_ArrayStack
+.PHONY : project_ArrayStack
+
+# fast build rule for target.
+project_ArrayStack/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_ArrayStack.dir/build.make CMakeFiles/project_ArrayStack.dir/build
+.PHONY : project_ArrayStack/fast
+
+#=============================================================================
 # Target rules for targets named project_DoublyLinkedList
 
 # Build rule for target.
@@ -239,6 +252,30 @@ tests/ArrayList.test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_ArrayList.dir/build.make CMakeFiles/project_ArrayList.dir/tests/ArrayList.test.cpp.s
 .PHONY : tests/ArrayList.test.cpp.s
 
+tests/ArrayStack.test.o: tests/ArrayStack.test.cpp.o
+.PHONY : tests/ArrayStack.test.o
+
+# target to build an object file
+tests/ArrayStack.test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_ArrayStack.dir/build.make CMakeFiles/project_ArrayStack.dir/tests/ArrayStack.test.cpp.o
+.PHONY : tests/ArrayStack.test.cpp.o
+
+tests/ArrayStack.test.i: tests/ArrayStack.test.cpp.i
+.PHONY : tests/ArrayStack.test.i
+
+# target to preprocess a source file
+tests/ArrayStack.test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_ArrayStack.dir/build.make CMakeFiles/project_ArrayStack.dir/tests/ArrayStack.test.cpp.i
+.PHONY : tests/ArrayStack.test.cpp.i
+
+tests/ArrayStack.test.s: tests/ArrayStack.test.cpp.s
+.PHONY : tests/ArrayStack.test.s
+
+# target to generate assembly for a file
+tests/ArrayStack.test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_ArrayStack.dir/build.make CMakeFiles/project_ArrayStack.dir/tests/ArrayStack.test.cpp.s
+.PHONY : tests/ArrayStack.test.cpp.s
+
 tests/DoublyLinkedList.test.o: tests/DoublyLinkedList.test.cpp.o
 .PHONY : tests/DoublyLinkedList.test.o
 
@@ -299,6 +336,7 @@ help:
 	@echo "... data_structure_and_algorithm_cpp"
 	@echo "... data_structure_and_algorithm_cpp_lib"
 	@echo "... project_ArrayList"
+	@echo "... project_ArrayStack"
 	@echo "... project_DoublyLinkedList"
 	@echo "... project_LinkedList"
 	@echo "... src/main.o"
@@ -307,6 +345,9 @@ help:
 	@echo "... tests/ArrayList.test.o"
 	@echo "... tests/ArrayList.test.i"
 	@echo "... tests/ArrayList.test.s"
+	@echo "... tests/ArrayStack.test.o"
+	@echo "... tests/ArrayStack.test.i"
+	@echo "... tests/ArrayStack.test.s"
 	@echo "... tests/DoublyLinkedList.test.o"
 	@echo "... tests/DoublyLinkedList.test.i"
 	@echo "... tests/DoublyLinkedList.test.s"

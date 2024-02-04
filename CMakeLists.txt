@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.21)
+
 project(data_structure_and_algorithm_cpp)
 
 find_package(Catch2 3 REQUIRED)
@@ -20,6 +21,7 @@ add_library(
         src/LinkedList/LinkedNode.h
         src/DoublyLinkedList/DoublyLinkedList.h
         src/DoublyLinkedList/DoublyLinkedNode.h
+        src/ArrayStack/ArrayStack.h
         src/utils/errors.h
 )
 
@@ -45,5 +47,3 @@ foreach(test_source ${SOURCES})
     target_link_libraries(project_${test_exec_name} PRIVATE Catch2::Catch2WithMain ${PROJECT_LIB_NAME})
     add_test(NAME ${test_exec_name} COMMAND project_${test_exec_name})
 endforeach()
-
-

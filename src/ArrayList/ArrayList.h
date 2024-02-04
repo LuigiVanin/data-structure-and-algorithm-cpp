@@ -27,7 +27,7 @@ public:
     auto At(int index) -> T;
     auto Insert(T value, int pos) -> void;
     auto Remove(int pos) -> void;
-
+    auto Length() -> int;
     auto GetCapacity() -> int;
 };
 

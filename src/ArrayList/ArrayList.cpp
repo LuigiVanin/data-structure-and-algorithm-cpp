@@ -128,6 +128,12 @@ auto ArrayList<T>::resize() -> void
     this->arr = new_arr;
 }
 
+template <class T>
+auto ArrayList<T>::Length() -> int
+{
+    return this->length;
+}
+
 // auto list = new ArrayList<int>();
 
 // list->Print();

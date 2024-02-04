@@ -1,4 +1,4 @@
-# Use an official C++ image as a base image
+# Use cmake image
 FROM rikorose/gcc-cmake:latest
 
 # Set the working directory inside the container
@@ -7,6 +7,7 @@ WORKDIR /usr/app
 # Copy the content of your local source directory to the working directory
 COPY . .
 
+# Installing Catch2
 RUN apt-get update && apt-get install -y \
     libgtest-dev \
     && git clone https://github.com/catchorg/Catch2.git \

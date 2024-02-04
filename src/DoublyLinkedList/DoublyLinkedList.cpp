@@ -63,7 +63,18 @@ auto DoublyLinkedList<T>::Push(T value) -> DoublyLinkedNode<T> *
 template <class T>
 auto DoublyLinkedList<T>::Shift(T value) -> DoublyLinkedNode<T> *
 {
-    throw new NotImplementedException();
+    if (this->head == nullptr && this->tail == nullptr)
+        return this->Push(value);
+
+    auto new_node = new DoublyLinkedNode<T>(value);
+
+    this->length++;
+    auto temp = this->head;
+    new_node->AttachNext(temp);
+    temp->AttachPrev(new_node);
+    this->head = new_node;
+
+    return new_node;
 }
 
 template <class T>
@@ -106,7 +117,24 @@ auto DoublyLinkedList<T>::Pop() -> void
 template <class T>
 auto DoublyLinkedList<T>::Unshift() -> void
 {
-    throw new NotImplementedException();
+    if (this->length == 0)
+        return;
+
+    if (this->head == nullptr || this->tail == nullptr)
+        return;
+
+    if (this->length == 1)
+    {
+        delete this->head;
+        this->head = nullptr;
+        this->tail = nullptr;
+        this->length--;
+        return;
+    }
+
+    this->length--;
+    auto temp = this->head->Next();
+    this->head = temp;
 }
 
 template <class T>
