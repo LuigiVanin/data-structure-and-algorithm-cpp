@@ -23,6 +23,8 @@ add_library(
         src/DoublyLinkedList/DoublyLinkedNode.h
         src/ArrayStack/ArrayStack.h
         src/LinkedQueue/LinkedQueue.h
+        src/Hashmap/Hashmap.h
+        src/Hashmap/Tuple.h
         src/utils/errors.h
 )
 
