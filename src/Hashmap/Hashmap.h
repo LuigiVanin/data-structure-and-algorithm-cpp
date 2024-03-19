@@ -17,7 +17,7 @@ public:
     int GetLength();
     int GetBuckets();
 
-    V Get(Key k);
+    Value Get(Key k);
     bool HasKey(Key k);
     void Put(Key k, Value v);
     void Remove(Key k);
@@ -28,7 +28,7 @@ private:
     int length = 0;
 
     ArrayList<LinkedList<Tuple<Key, Value>>> tabela;
-    float getLoadFactor();
+    double getLoadFactor();
     int hashKey(Key key);
 };
 

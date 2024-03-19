@@ -16,7 +16,7 @@ Hashmap<Key, Value>::~Hashmap()
 template <class Key, class Value>
 int Hashmap<Key, Value>::hashKey(Key key)
 {
-    auto hash_id = (int)hash<Chave>{}(key);
+    auto hash_id = (int)std::hash<Key>{}(key);
     return abs(hash_id % this->buckets);
 }
 
