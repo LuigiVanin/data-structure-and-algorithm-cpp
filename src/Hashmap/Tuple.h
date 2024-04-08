@@ -11,6 +11,7 @@ class Tuple
 
 public:
     Tuple(K c, V v);
+    Tuple() : key(K()), value(V()) {}
 
     K GetKey();
     V GetValue();

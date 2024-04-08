@@ -27,7 +27,7 @@ private:
     int buckets = 8;
     int length = 0;
 
-    ArrayList<LinkedList<Tuple<Key, Value>>> tabela;
+    ArrayList<LinkedList<Tuple<Key, Value>>> table;
     double getLoadFactor();
     int hashKey(Key key);
 };

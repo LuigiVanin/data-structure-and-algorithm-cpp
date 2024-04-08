@@ -11,6 +11,6 @@ int main()
     std::cout << "Hello, World!!!" << std::endl;
 
     auto map = new Hashmap<int, int>();
-
+    map->Put(1, 2);
     return 0;
 }

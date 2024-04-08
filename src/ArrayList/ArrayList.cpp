@@ -113,6 +113,12 @@ auto ArrayList<T>::GetCapacity() -> int
     return this->capacity;
 }
 
+template <class T>
+auto ArrayList<T>::GetArray() -> T *
+{
+    return this->arr;
+}
+
 // Private
 
 template <class T>
