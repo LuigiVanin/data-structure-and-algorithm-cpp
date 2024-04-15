@@ -50,5 +50,6 @@
         "optional": "cpp",
         "ratio": "cpp",
         "variant": "cpp"
-    }
+    },
+    "editor.tabSize": 4
 }

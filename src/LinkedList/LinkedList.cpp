@@ -10,11 +10,22 @@ LinkedList<T>::LinkedList()
     this->head = nullptr;
 }
 
+// template <class T>
+// LinkedList<T>::~LinkedList()
+// {
+//     if (this->head != nullptr)
+//         delete this->head;
+// }
 template <class T>
 LinkedList<T>::~LinkedList()
 {
-    if (this->head != nullptr)
-        delete this->head;
+    Node<T> *current = this->head;
+    while (current != nullptr)
+    {
+        Node<T> *next = current->Next();
+        delete current;
+        current = next;
+    }
 }
 
 template <class T>
@@ -152,4 +163,18 @@ auto LinkedList<T>::Print() -> void
         temp = temp->Next();
     }
     std::cout << "]\n";
+}
+
+template <class T>
+auto LinkedList<T>::Clear() -> void
+{
+    Node<T> *current = this->head;
+    while (current != nullptr)
+    {
+        Node<T> *next = current->Next();
+        delete current;
+        current = next;
+    }
+    this->head = nullptr;
+    this->length = 0;
 }

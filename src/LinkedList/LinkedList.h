@@ -23,6 +23,7 @@ public:
     auto Pop() -> void;
     auto Remove(int pos) -> void;
     auto Print() -> void;
+    auto Clear() -> void;
 
 private:
     Node<T> *head = nullptr;

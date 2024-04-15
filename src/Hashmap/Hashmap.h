@@ -6,6 +6,7 @@
 #include "../LinkedList/LinkedList.h"
 #include "../ArrayList/ArrayList.h"
 #include "Tuple.h"
+#include "../utils/option.h"
 
 template <class Key, class Value>
 class Hashmap
@@ -17,8 +18,7 @@ public:
     int GetLength();
     int GetBuckets();
 
-    Value Get(Key k);
-    bool HasKey(Key k);
+    Option<Value> Get(Key k);
     void Put(Key k, Value v);
     void Remove(Key k);
     void Clear();
@@ -26,10 +26,11 @@ public:
 private:
     int buckets = 8;
     int length = 0;
-
     ArrayList<LinkedList<Tuple<Key, Value>>> table;
-    double getLoadFactor();
+
     int hashKey(Key key);
+    double getLoadFactor();
+    LinkedList<Tuple<Key, Value>> *getHashList(int hash);
 };
 
 #include "Hashmap.cpp"

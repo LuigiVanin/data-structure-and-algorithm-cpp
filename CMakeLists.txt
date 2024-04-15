@@ -26,6 +26,7 @@ add_library(
         src/Hashmap/Hashmap.h
         src/Hashmap/Tuple.h
         src/utils/errors.h
+        src/utils/option.h
 )
 
 set_target_properties(${PROJECT_LIB_NAME} PROPERTIES LINKER_LANGUAGE CXX)

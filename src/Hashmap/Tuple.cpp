@@ -14,6 +14,9 @@ K Tuple<K, V>::GetKey()
 }
 
 template <class K, class V>
+Tuple<K, V>::~Tuple() {}
+
+template <class K, class V>
 V Tuple<K, V>::GetValue()
 {
     return this->value;

@@ -1,5 +1,6 @@
 #include "Hashmap.h"
 #include "Tuple.h"
+#include "../LinkedList/LinkedNode.h"
 
 template <class Key, class Value>
 Hashmap<Key, Value>::Hashmap(int buckets)
@@ -16,28 +17,63 @@ Hashmap<Key, Value>::Hashmap(int buckets)
 template <class Key, class Value>
 Hashmap<Key, Value>::~Hashmap()
 {
+    // delete this->table;
+    // this->Clear();
 }
 
 template <class Key, class Value>
 void Hashmap<Key, Value>::Put(Key k, Value v)
 {
-    auto targetKeyHash = this->hashKey(k);
-    LinkedList<Tuple<Key, Value>> targetList = this->table.GetArray()[targetKeyHash];
 
-    std::cout << "Teste " << targetList.length << "\n";
+    auto targetKeyHash = this->hashKey(k);
+
+    LinkedList<Tuple<Key, Value>> *targetList = this->getHashList(targetKeyHash);
 
     auto tuple = Tuple<Key, Value>(k, v);
-    std::cout << tuple.GetKey() << " " << tuple.GetValue() << "\n";
 
-    targetList.Push({k, v});
-    // targetList.Shift(Tuple<Key, Value>(k, v));
+    targetList->Shift({k, v});
+}
+
+template <class Key, class Value>
+LinkedList<Tuple<Key, Value>> *Hashmap<Key, Value>::getHashList(int hash)
+{
+    return &this->table.GetArray()[hash];
+}
+
+template <class Key, class Value>
+Option<Value> Hashmap<Key, Value>::Get(Key k)
+{
+
+    auto targetKeyHash = this->hashKey(k);
+
+    LinkedList<Tuple<Key, Value>> *targetList = this->getHashList(targetKeyHash);
+    Node<Tuple<Key, Value>> *head = targetList->getHead();
+
+    if (!head)
+    {
+        return Option<Value>();
+    }
+
+    auto temp = head;
+
+    while (temp != nullptr)
+    {
+        if (temp->value.GetKey() == k)
+        {
+            return Option<Value>(temp->value.GetValue());
+        }
+
+        temp = temp->Next();
+    }
+
+    return Option<Value>();
 }
 
 template <class Key, class Value>
 int Hashmap<Key, Value>::hashKey(Key key)
 {
-    auto hash_id = (int)std::hash<Key>{}(key);
-    return abs(hash_id % this->buckets);
+    auto hashId = (int)std::hash<Key>{}(key);
+    return abs(hashId % this->buckets);
 }
 
 template <class Key, class Value>
@@ -56,4 +92,13 @@ template <class Key, class Value>
 int Hashmap<Key, Value>::GetBuckets()
 {
     return this->buckets;
+}
+
+template <class Key, class Value>
+void Hashmap<Key, Value>::Clear()
+{
+    for (int i = 0; i < buckets; i++)
+    {
+        table.GetArray()[i] = LinkedList<Tuple<Key, Value>>();
+    }
 }
