@@ -31,8 +31,18 @@ int main()
     map->Put("Outro teste", 31);
     map->Put("Outro teste", 31);
     map->Put("Outro teste", 31);
-    map->Put("Outro teste", 31);
+    map->Put("Outro teste", 55);
+    auto value = map->Get("Outro teste");
     map->Put("Outro teste", 41);
+
+    if (value.IsNone())
+    {
+        std::cout << "Value not found" << std::endl;
+    }
+    else
+    {
+        std::cout << "Value: " << value.Unwrap() << std::endl;
+    }
 
     delete map;
     return 0;

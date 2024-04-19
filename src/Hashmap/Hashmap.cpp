@@ -33,7 +33,7 @@ void Hashmap<Key, Value>::Put(Key k, Value v)
         this->resize();
 
     auto targetKeyHash = this->hashKey(k);
-    auto *targetList = this->getHashListItem(targetKeyHash);
+    auto targetList = this->getHashListItem(targetKeyHash);
 
     targetList->Shift({k, v});
     this->length++;
@@ -51,7 +51,7 @@ Option<Value> Hashmap<Key, Value>::Get(Key k)
 
     auto targetKeyHash = this->hashKey(k);
 
-    auto *targetList = this->getHashListItem(targetKeyHash);
+    auto targetList = this->getHashListItem(targetKeyHash);
     Node<Tuple<Key, Value>> *head = targetList->getHead();
 
     if (!head)
