@@ -15,14 +15,24 @@ int main()
     map->Put("Mais um teste", 4);
     map->Put("Outro teste", 12);
     map->Put("Outro teste", 31);
+    map->Put("Outro teste", 31);
+    map->Put("Outro teste", 31);
 
-    map->Get("Não tem nada");
-    auto value = map->Get("Outro teste");
+    std::cout << "Length: " << map->GetLength() << "\n";
 
-    if (value.IsSome())
-    {
-        std::cout << "Value found: " << value.Unwrap() << "\n";
-    }
+    map->Put("Outro teste", 31);
+    map->Put("Outro teste", 31);
+    map->Put("Outro teste", 31);
+
+    map->Put("Outro teste", 31);
+    map->Put("Outro teste", 31);
+    map->Put("Outro teste", 31);
+    map->Put("Outro teste", 31);
+    map->Put("Outro teste", 31);
+    map->Put("Outro teste", 31);
+    map->Put("Outro teste", 31);
+    map->Put("Outro teste", 31);
+    map->Put("Outro teste", 41);
 
     delete map;
     return 0;

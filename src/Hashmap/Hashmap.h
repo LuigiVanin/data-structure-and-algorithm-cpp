@@ -26,11 +26,12 @@ public:
 private:
     int buckets = 8;
     int length = 0;
-    ArrayList<LinkedList<Tuple<Key, Value>>> table;
+    ArrayList<LinkedList<Tuple<Key, Value>> *> *table;
 
     int hashKey(Key key);
     double getLoadFactor();
-    LinkedList<Tuple<Key, Value>> *getHashList(int hash);
+    LinkedList<Tuple<Key, Value>> *getHashListItem(int hash);
+    void resize();
 };
 
 #include "Hashmap.cpp"

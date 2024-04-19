@@ -16,6 +16,7 @@ ArrayList<T>::ArrayList(int initial_capacity)
 template <class T>
 ArrayList<T>::~ArrayList()
 {
+
     delete[] this->arr;
 }
 

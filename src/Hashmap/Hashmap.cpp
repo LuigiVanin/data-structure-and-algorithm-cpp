@@ -6,38 +6,79 @@ template <class Key, class Value>
 Hashmap<Key, Value>::Hashmap(int buckets)
 {
     this->buckets = buckets;
-    this->table = ArrayList<LinkedList<Tuple<Key, Value>>>(this->buckets);
+    this->table = new ArrayList<LinkedList<Tuple<Key, Value>> *>(this->buckets);
 
     for (int i = 0; i < this->buckets; i++)
     {
-        table.Push(LinkedList<Tuple<Key, Value>>());
+        table->Push(new LinkedList<Tuple<Key, Value>>());
     }
 }
 
 template <class Key, class Value>
 Hashmap<Key, Value>::~Hashmap()
 {
-    // delete this->table;
-    // this->Clear();
+    auto arr = this->table->GetArray();
+    for (int i = 0; i < this->buckets; i++)
+    {
+        delete arr[i];
+    }
+
+    delete this->table;
 }
 
 template <class Key, class Value>
 void Hashmap<Key, Value>::Put(Key k, Value v)
 {
+    if (this->getLoadFactor() > 0.5)
+    {
+        this->resize();
+    }
 
     auto targetKeyHash = this->hashKey(k);
 
-    LinkedList<Tuple<Key, Value>> *targetList = this->getHashList(targetKeyHash);
-
-    auto tuple = Tuple<Key, Value>(k, v);
+    auto *targetList = this->getHashListItem(targetKeyHash);
 
     targetList->Shift({k, v});
+    this->length++;
 }
 
 template <class Key, class Value>
-LinkedList<Tuple<Key, Value>> *Hashmap<Key, Value>::getHashList(int hash)
+void Hashmap<Key, Value>::resize()
 {
-    return &this->table.GetArray()[hash];
+    std::cout << "Resizing" << std::endl;
+    auto oldTable = this->table;
+    this->length = 0;
+    this->buckets *= 2;
+    this->table = new ArrayList<LinkedList<Tuple<Key, Value>> *>(this->buckets);
+
+    for (int i = 0; i < this->buckets; i++)
+    {
+        table->Push(new LinkedList<Tuple<Key, Value>>());
+    }
+
+    for (int i = 0; i < oldTable->length; i++)
+    {
+        auto *list = oldTable->At(i);
+        auto *head = list->getHead();
+
+        while (head != nullptr)
+        {
+            auto key = head->value.GetKey();
+            auto value = head->value.GetValue();
+            if (this->Get(key).IsNone())
+            {
+
+                this->Put(key, value);
+            }
+            head = head->Next();
+        }
+    }
+}
+
+template <class Key, class Value>
+LinkedList<Tuple<Key, Value>> *Hashmap<Key, Value>::getHashListItem(int hash)
+{
+    return this->table->GetArray()[hash];
 }
 
 template <class Key, class Value>
@@ -46,7 +87,7 @@ Option<Value> Hashmap<Key, Value>::Get(Key k)
 
     auto targetKeyHash = this->hashKey(k);
 
-    LinkedList<Tuple<Key, Value>> *targetList = this->getHashList(targetKeyHash);
+    auto *targetList = this->getHashListItem(targetKeyHash);
     Node<Tuple<Key, Value>> *head = targetList->getHead();
 
     if (!head)
@@ -97,8 +138,10 @@ int Hashmap<Key, Value>::GetBuckets()
 template <class Key, class Value>
 void Hashmap<Key, Value>::Clear()
 {
+    auto arr = table->GetArray();
     for (int i = 0; i < buckets; i++)
     {
-        table.GetArray()[i] = LinkedList<Tuple<Key, Value>>();
+        delete arr[i];
+        arr[i] = new LinkedList<Tuple<Key, Value>>();
     }
 }

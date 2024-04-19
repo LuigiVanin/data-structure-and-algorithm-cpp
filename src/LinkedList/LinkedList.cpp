@@ -10,12 +10,6 @@ LinkedList<T>::LinkedList()
     this->head = nullptr;
 }
 
-// template <class T>
-// LinkedList<T>::~LinkedList()
-// {
-//     if (this->head != nullptr)
-//         delete this->head;
-// }
 template <class T>
 LinkedList<T>::~LinkedList()
 {
