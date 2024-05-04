@@ -192,6 +192,19 @@ project_DoublyLinkedList/fast:
 .PHONY : project_DoublyLinkedList/fast
 
 #=============================================================================
+# Target rules for targets named project_Hashmap
+
+# Build rule for target.
+project_Hashmap: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 project_Hashmap
+.PHONY : project_Hashmap
+
+# fast build rule for target.
+project_Hashmap/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_Hashmap.dir/build.make CMakeFiles/project_Hashmap.dir/build
+.PHONY : project_Hashmap/fast
+
+#=============================================================================
 # Target rules for targets named project_LinkedList
 
 # Build rule for target.
@@ -313,6 +326,30 @@ tests/DoublyLinkedList.test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_DoublyLinkedList.dir/build.make CMakeFiles/project_DoublyLinkedList.dir/tests/DoublyLinkedList.test.cpp.s
 .PHONY : tests/DoublyLinkedList.test.cpp.s
 
+tests/Hashmap.test.o: tests/Hashmap.test.cpp.o
+.PHONY : tests/Hashmap.test.o
+
+# target to build an object file
+tests/Hashmap.test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_Hashmap.dir/build.make CMakeFiles/project_Hashmap.dir/tests/Hashmap.test.cpp.o
+.PHONY : tests/Hashmap.test.cpp.o
+
+tests/Hashmap.test.i: tests/Hashmap.test.cpp.i
+.PHONY : tests/Hashmap.test.i
+
+# target to preprocess a source file
+tests/Hashmap.test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_Hashmap.dir/build.make CMakeFiles/project_Hashmap.dir/tests/Hashmap.test.cpp.i
+.PHONY : tests/Hashmap.test.cpp.i
+
+tests/Hashmap.test.s: tests/Hashmap.test.cpp.s
+.PHONY : tests/Hashmap.test.s
+
+# target to generate assembly for a file
+tests/Hashmap.test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_Hashmap.dir/build.make CMakeFiles/project_Hashmap.dir/tests/Hashmap.test.cpp.s
+.PHONY : tests/Hashmap.test.cpp.s
+
 tests/LinkedList.test.o: tests/LinkedList.test.cpp.o
 .PHONY : tests/LinkedList.test.o
 
@@ -375,6 +412,7 @@ help:
 	@echo "... project_ArrayList"
 	@echo "... project_ArrayStack"
 	@echo "... project_DoublyLinkedList"
+	@echo "... project_Hashmap"
 	@echo "... project_LinkedList"
 	@echo "... project_LinkedQueue"
 	@echo "... src/main.o"
@@ -389,6 +427,9 @@ help:
 	@echo "... tests/DoublyLinkedList.test.o"
 	@echo "... tests/DoublyLinkedList.test.i"
 	@echo "... tests/DoublyLinkedList.test.s"
+	@echo "... tests/Hashmap.test.o"
+	@echo "... tests/Hashmap.test.i"
+	@echo "... tests/Hashmap.test.s"
 	@echo "... tests/LinkedList.test.o"
 	@echo "... tests/LinkedList.test.i"
 	@echo "... tests/LinkedList.test.s"

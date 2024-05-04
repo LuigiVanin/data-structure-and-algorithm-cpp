@@ -83,6 +83,39 @@ int Hashmap<Key, Value>::GetBuckets()
 }
 
 template <class Key, class Value>
+void Hashmap<Key, Value>::Remove(Key k) {
+    Option<Value> value = this->Get(k);
+    if (value.IsNone()) {
+        return;
+    }
+
+    auto targetKeyHash = this->hashKey(k);
+    LinkedList<Tuple<Key, Value>> *targetList = this->getHashListItem(targetKeyHash);
+
+    
+    Node<Tuple<Key, Value>> *head = targetList->getHead();
+
+    if (head->value.GetKey() == k) {
+        targetList->Pop();
+        this->length--;
+        return;
+    }
+
+    Node<Tuple<Key, Value>> *temp = head;
+
+    while (temp->Next() != nullptr) {
+        if (temp->Next()->value.GetKey() == k) {
+            auto next = temp->Next();
+            temp->Append(next->Next());
+            delete next;
+            this->length--;
+        }
+        temp = temp->Next();
+    }
+    return;
+}
+
+template <class Key, class Value>
 void Hashmap<Key, Value>::Clear()
 {
     auto arr = table->GetArray();
@@ -91,6 +124,8 @@ void Hashmap<Key, Value>::Clear()
         delete arr[i];
         arr[i] = new LinkedList<Tuple<Key, Value>>();
     }
+    this->length = 0;
+    return;
 }
 
 template <class Key, class Value>
@@ -108,6 +143,7 @@ void Hashmap<Key, Value>::resize()
 
     for (int i = 0; i < oldTable->length; i++)
     {
+        // Possivel erro aqui :down
         auto *list = oldTable->At(i);
         auto *head = list->getHead();
 

@@ -44,6 +44,45 @@ int main()
         std::cout << "Value: " << value.Unwrap() << std::endl;
     }
 
+    value = map->Get("Outro teste");
+
+    if (value.IsNone())
+    {
+        std::cout << "Value not found" << std::endl;
+    }
+    else
+    {
+        std::cout << "Value: " << value.Unwrap() << std::endl;
+    }
+
+    map->Remove("Outro teste");
+
+    value = map->Get("Outro teste");
+
+
+    if (value.IsNone())
+    {
+        std::cout << "Value not found" << std::endl;
+    }
+    else
+    {
+        std::cout << "Value: " << value.Unwrap() << std::endl;
+    }
+
+    map->Clear();
+
+    value = map->Get("Outro teste");
+
+
+    if (value.IsNone())
+    {
+        std::cout << "Value not found" << std::endl;
+    }
+    else
+    {
+        std::cout << "Value: " << value.Unwrap() << std::endl;
+    }
+
     delete map;
     return 0;
 }

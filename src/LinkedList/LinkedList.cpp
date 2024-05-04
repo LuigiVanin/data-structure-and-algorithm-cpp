@@ -141,8 +141,27 @@ auto LinkedList<T>::Pop() -> void
 
 template <class T>
 auto LinkedList<T>::Remove(int index) -> void
-{
-    throw std::invalid_argument("Not implemented");
+{   
+    if (index > this->length - 1 || index < 0)
+        throw std::invalid_argument("Index out of bounds");
+
+    if (index == 0)
+    {
+        auto temp = this->head;
+        this->head = temp->Next();
+        delete temp;
+        this->length--;
+        return;
+    }
+
+    auto temp = this->head;
+    for (int i = 0; i < index - 1; i++)
+        temp = temp->Next();
+
+    auto node_to_delete = temp->Next();
+    temp->Append(node_to_delete->Next());
+    delete node_to_delete;
+    this->length--;
 }
 
 template <class T>
