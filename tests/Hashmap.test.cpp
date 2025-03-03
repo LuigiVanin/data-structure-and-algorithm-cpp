@@ -210,4 +210,64 @@ TEST_CASE("Testing Clear method", "[Hashmap]")
             REQUIRE(map->Get(i).IsNone());
         }
     }
+
+    SECTION("Testing remove method on specific key")
+    {
+        auto map = new Hashmap<std::string, int>();
+        map->Put("Teste", 2);
+        map->Put("Mais um teste", 4);
+        map->Put("Outro teste", 12);
+
+        REQUIRE(map->GetLength() == 3);
+
+        map->Remove("Teste");
+
+        REQUIRE(map->GetLength() == 2);
+        REQUIRE(map->Get("Teste").IsNone());
+        REQUIRE(map->Get("Mais um teste").Unwrap() == 4);
+        REQUIRE(map->Get("Outro teste").Unwrap() == 12);
+
+        delete map;
+    }
+
+    SECTION("Testing multiple deletions on hashmap")
+    {
+        auto map = new Hashmap<int, int>();
+
+        for (int i = 0; i < 100; i++)
+        {
+            map->Put(i, i);
+        }
+
+        REQUIRE(map->GetLength() == 100);
+
+        for (int i = 0; i < 100; i++)
+        {
+            map->Remove(i);
+        }
+
+        REQUIRE(map->GetLength() == 0);
+
+        for (int i = 0; i < 100; i++)
+        {
+            REQUIRE(map->Get(i).IsNone());
+        }
+
+        for (int i = 0; i < 100; i++)
+        {
+            map->Put(i, i);
+        }
+
+        REQUIRE(map->GetLength() == 100);
+
+        // check if all values are there and with the correct value
+
+        for (int i = 0; i < 100; i++)
+        {
+            REQUIRE_FALSE(map->Get(i).IsNone());
+            REQUIRE(map->Get(i).Unwrap() == i);
+        }
+
+        delete map;
+    }
 }

@@ -18,6 +18,7 @@ public:
     auto AttachPrev(T value);
     auto AttachNext(DoublyLinkedNode<T> *node);
     auto AttachPrev(DoublyLinkedNode<T> *node);
+    void Detach();
 
 private:
     DoublyLinkedNode<T> *prev;

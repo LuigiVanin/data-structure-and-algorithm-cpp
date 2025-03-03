@@ -83,19 +83,21 @@ int Hashmap<Key, Value>::GetBuckets()
 }
 
 template <class Key, class Value>
-void Hashmap<Key, Value>::Remove(Key k) {
+void Hashmap<Key, Value>::Remove(Key k)
+{
     Option<Value> value = this->Get(k);
-    if (value.IsNone()) {
+    if (value.IsNone())
+    {
         return;
     }
 
     auto targetKeyHash = this->hashKey(k);
     LinkedList<Tuple<Key, Value>> *targetList = this->getHashListItem(targetKeyHash);
 
-    
     Node<Tuple<Key, Value>> *head = targetList->getHead();
 
-    if (head->value.GetKey() == k) {
+    if (head->value.GetKey() == k)
+    {
         targetList->Pop();
         this->length--;
         return;
@@ -103,8 +105,10 @@ void Hashmap<Key, Value>::Remove(Key k) {
 
     Node<Tuple<Key, Value>> *temp = head;
 
-    while (temp->Next() != nullptr) {
-        if (temp->Next()->value.GetKey() == k) {
+    while (temp->Next() != nullptr)
+    {
+        if (temp->Next()->value.GetKey() == k)
+        {
             auto next = temp->Next();
             temp->Append(next->Next());
             delete next;
@@ -136,6 +140,8 @@ void Hashmap<Key, Value>::resize()
     this->buckets *= 2;
     this->table = new ArrayList<LinkedList<Tuple<Key, Value>> *>(this->buckets);
 
+    std::cout << "Resizing to " << this->buckets << std::endl;
+
     for (int i = 0; i < this->buckets; i++)
     {
         table->Push(new LinkedList<Tuple<Key, Value>>());
@@ -143,7 +149,7 @@ void Hashmap<Key, Value>::resize()
 
     for (int i = 0; i < oldTable->length; i++)
     {
-        // Possivel erro aqui :down
+        // Possivel erro aqui ⬇️
         auto *list = oldTable->At(i);
         auto *head = list->getHead();
 

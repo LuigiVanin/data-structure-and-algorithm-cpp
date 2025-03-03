@@ -59,7 +59,6 @@ int main()
 
     value = map->Get("Outro teste");
 
-
     if (value.IsNone())
     {
         std::cout << "Value not found" << std::endl;
@@ -73,7 +72,6 @@ int main()
 
     value = map->Get("Outro teste");
 
-
     if (value.IsNone())
     {
         std::cout << "Value not found" << std::endl;
@@ -84,5 +82,6 @@ int main()
     }
 
     delete map;
+
     return 0;
 }

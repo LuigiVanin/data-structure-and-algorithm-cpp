@@ -12,8 +12,7 @@ DoublyLinkedNode<T>::DoublyLinkedNode(T value)
 template <class T>
 DoublyLinkedNode<T>::~DoublyLinkedNode()
 {
-    // if (this->prev != nullptr)
-    //     delete this->prev;
+    this->Detach();
     if (this->next != nullptr)
         delete this->next;
 }
@@ -35,9 +34,10 @@ auto DoublyLinkedNode<T>::AttachNext(T value)
 {
     auto node = new DoublyLinkedNode<T>(value);
     if (this->next != nullptr)
-        delete this->next;
+        this->next->Detach();
 
     this->next = node;
+    node->prev = this;
 }
 
 template <class T>
@@ -45,26 +45,41 @@ auto DoublyLinkedNode<T>::AttachPrev(T value)
 {
     auto node = new DoublyLinkedNode<T>(value);
     if (this->prev != nullptr)
-        delete this->prev;
+        this->prev->Detach();
 
     this->prev = node;
+    node->next = this;
 }
 
 template <class T>
 auto DoublyLinkedNode<T>::AttachNext(DoublyLinkedNode<T> *node)
 {
     if (this->next != nullptr)
-        delete this->next;
+        this->next->Detach();
 
     this->next = node;
+    if (node != nullptr)
+        node->prev = this;
 }
 
 template <class T>
 auto DoublyLinkedNode<T>::AttachPrev(DoublyLinkedNode<T> *node)
 {
-
     if (this->prev != nullptr)
-        delete this->prev;
+        this->prev->Detach();
 
     this->prev = node;
+    if (node != nullptr)
+        node->next = this;
+}
+
+template <class T>
+void DoublyLinkedNode<T>::Detach()
+{
+    if (this->prev != nullptr)
+        this->prev->next = this->next;
+    if (this->next != nullptr)
+        this->next->prev = this->prev;
+    this->prev = nullptr;
+    this->next = nullptr;
 }

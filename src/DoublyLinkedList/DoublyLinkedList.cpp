@@ -17,9 +17,6 @@ DoublyLinkedList<T>::~DoublyLinkedList()
 {
     if (this->head != nullptr)
         delete this->head;
-
-    // if (this->tail != nullptr)
-    //     delete this->tail;
 }
 
 template <class T>
@@ -94,7 +91,6 @@ auto DoublyLinkedList<T>::At(int index) -> T
 template <class T>
 auto DoublyLinkedList<T>::Pop() -> void
 {
-
     if (this->length == 0)
         return;
 
@@ -109,8 +105,8 @@ auto DoublyLinkedList<T>::Pop() -> void
 
     this->length--;
     auto temp = this->tail->Prev();
-    // this->tail->AttachPrev(nullptr);
-    temp->AttachNext(nullptr);
+    this->tail->Detach();
+    delete this->tail;
     this->tail = temp;
 }
 
@@ -134,6 +130,8 @@ auto DoublyLinkedList<T>::Unshift() -> void
 
     this->length--;
     auto temp = this->head->Next();
+    this->head->Detach();
+    delete this->head;
     this->head = temp;
 }
 

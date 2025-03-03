@@ -12,7 +12,7 @@ class Tuple
 public:
     Tuple(K c, V v);
     Tuple() : key(K()), value(V()) {}
-    ~Tuple();
+    // ~Tuple();
 
     K GetKey();
     V GetValue();
