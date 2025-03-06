@@ -51,5 +51,7 @@
         "ratio": "cpp",
         "variant": "cpp"
     },
-    "editor.tabSize": 4
+    "editor.tabSize": 4,
+    "cmake.configureOnEdit": true,
+    "cmake.saveBeforeBuild": true,
 }

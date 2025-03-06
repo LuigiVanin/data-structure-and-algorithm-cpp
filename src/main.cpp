@@ -4,84 +4,26 @@
 // #include "DoublyLinkedList/DoublyLinkedList.h"
 // #include "ArrayStack/ArrayStack.h"
 // #include "LinkedQueue/LinkedQueue.h"
-#include "Hashmap/Hashmap.h"
+// #include "Hashmap/Hashmap.h"
+#include "BinarySearchTree/BinarySearchTree.h"
 
 int main()
 {
     std::cout << "Hello, World!!!" << std::endl;
 
-    auto map = new Hashmap<std::string, int>();
-    map->Put("Teste", 2);
-    map->Put("Mais um teste", 4);
-    map->Put("Outro teste", 12);
-    map->Put("Outro teste", 31);
-    map->Put("Outro teste", 31);
-    map->Put("Outro teste", 31);
+    auto bst = new BinarySearchTree<int>();
 
-    std::cout << "Length: " << map->GetLength() << "\n";
+    std::cout << "End worlds" << std::endl;
 
-    map->Put("Outro teste", 31);
-    map->Put("Outro teste", 31);
-    map->Put("Outro teste", 31);
+    bst->Insert(10);
+    bst->Insert(5);
+    bst->Insert(15);
+    bst->Insert(3);
+    bst->Insert(7);
+    bst->Insert(12);
+    bst->Insert(17);
 
-    map->Put("Outro teste", 31);
-    map->Put("Outro teste", 31);
-    map->Put("Outro teste", 31);
-    map->Put("Outro teste", 31);
-    map->Put("Outro teste", 31);
-    map->Put("Outro teste", 31);
-    map->Put("Outro teste", 31);
-    map->Put("Outro teste", 55);
-    auto value = map->Get("Outro teste");
-    map->Put("Outro teste", 41);
+    auto root = bst->GetRoot();
 
-    if (value.IsNone())
-    {
-        std::cout << "Value not found" << std::endl;
-    }
-    else
-    {
-        std::cout << "Value: " << value.Unwrap() << std::endl;
-    }
-
-    value = map->Get("Outro teste");
-
-    if (value.IsNone())
-    {
-        std::cout << "Value not found" << std::endl;
-    }
-    else
-    {
-        std::cout << "Value: " << value.Unwrap() << std::endl;
-    }
-
-    map->Remove("Outro teste");
-
-    value = map->Get("Outro teste");
-
-    if (value.IsNone())
-    {
-        std::cout << "Value not found" << std::endl;
-    }
-    else
-    {
-        std::cout << "Value: " << value.Unwrap() << std::endl;
-    }
-
-    map->Clear();
-
-    value = map->Get("Outro teste");
-
-    if (value.IsNone())
-    {
-        std::cout << "Value not found" << std::endl;
-    }
-    else
-    {
-        std::cout << "Value: " << value.Unwrap() << std::endl;
-    }
-
-    delete map;
-
-    return 0;
+        return 0;
 }
