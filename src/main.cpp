@@ -42,5 +42,15 @@ int main()
 
     std::cout << "Has Value: " << hasValue << std::endl;
 
+    bst->Clear();
+
+    std::cout << "Amount: " << bst->Amount() << std::endl;
+
+    bst->Insert(10);
+    bst->Insert(5);
+    bst->Insert(15);
+
+    std::cout << "Amount: " << bst->Amount() << std::endl;
+
     return 0;
 }

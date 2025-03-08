@@ -55,7 +55,6 @@ void BinarySearchTree<T>::Insert(T value)
         {
             if (current->right == nullptr)
             {
-                std::cout << "NULL Right" << std::endl;
                 current->right = newNode;
                 this->depth = std::max(depth, this->depth);
                 this->amount++;
@@ -79,6 +78,13 @@ template <class T>
 int BinarySearchTree<T>::Amount()
 {
     return this->amount;
+}
+
+template <class T>
+    requires std::totally_ordered<T>
+int BinarySearchTree<T>::Depth()
+{
+    return this->depth;
 }
 
 template <class T>
@@ -119,6 +125,16 @@ template <class T>
 bool BinarySearchTree<T>::HasValue(T value)
 {
     auto node = this->Search(value);
-    std::cout << "searched value: " << value << std::endl;
     return !(node == nullptr);
+}
+
+template <class T>
+    requires std::totally_ordered<T>
+void BinarySearchTree<T>::Clear()
+{
+    this->amount = 0;
+    this->depth = 0;
+
+    delete this->root;
+    this->root = nullptr;
 }

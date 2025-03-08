@@ -19,8 +19,9 @@ public:
     BstNode<T> *Search(T value);
     BstNode<T> *GetRoot();
     bool HasValue(T value);
-    // void Clear();
+    void Clear();
     int Amount();
+    int Depth();
 
 private:
     int amount = 0;
