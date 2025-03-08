@@ -16,10 +16,11 @@ public:
 
     void Insert(T value);
     // void Remove(T value);
-    // BstNode<T> *Search(T value);
+    BstNode<T> *Search(T value);
     BstNode<T> *GetRoot();
-    // T HasValue(T value);
+    bool HasValue(T value);
     // void Clear();
+    int Amount();
 
 private:
     int amount = 0;

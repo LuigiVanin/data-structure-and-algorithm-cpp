@@ -1,6 +1,7 @@
 #include "BstNode.h"
 
 template <class T>
+    requires std::totally_ordered<T>
 BstNode<T>::BstNode(T value)
 {
     this->value = value;
@@ -10,6 +11,7 @@ BstNode<T>::BstNode(T value)
 }
 
 template <class T>
+    requires std::totally_ordered<T>
 BstNode<T>::~BstNode()
 {
     delete this->left;
@@ -17,12 +19,14 @@ BstNode<T>::~BstNode()
 }
 
 template <class T>
+    requires std::totally_ordered<T>
 T BstNode<T>::GetValue()
 {
     return this->value;
 }
 
 template <class T>
+    requires std::totally_ordered<T>
 void BstNode<T>::SetParent(BstNode *node)
 {
     this->parent = node;
