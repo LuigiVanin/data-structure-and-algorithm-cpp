@@ -15,7 +15,7 @@ public:
     ~BinarySearchTree();
 
     void Insert(T value);
-    // void Remove(T value);
+    void Remove(T value);
     BstNode<T> *Search(T value);
     BstNode<T> *GetRoot();
     bool HasValue(T value);
@@ -27,6 +27,8 @@ private:
     int amount = 0;
     int depth = 0;
     BstNode<T> *root = nullptr;
+
+    void recursiveInsertion(BstNode<T> *node);
 };
 
 #include "BinarySearchTree.cpp"

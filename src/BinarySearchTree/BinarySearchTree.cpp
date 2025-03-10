@@ -1,4 +1,5 @@
 #include "BinarySearchTree.h"
+#include "../utils/errors.h"
 
 #include <concepts>
 
@@ -64,6 +65,42 @@ void BinarySearchTree<T>::Insert(T value)
             current = current->right;
         }
     }
+}
+
+template <class T>
+    requires std::totally_ordered<T>
+void BinarySearchTree<T>::Remove(T value)
+{
+    BstNode<T> *newRoot = this->Search(value);
+
+    if (newRoot == nullptr)
+        throw new CouldNotFindItem();
+
+    BstNode<T> *parent = newRoot->GetParent();
+
+    if (parent->right != nullptr && parent->right->GetValue() == value)
+        parent->right = nullptr;
+
+    else if (parent->left != nullptr && parent->left->GetValue() == value)
+        parent->left = nullptr;
+
+    this->recursiveInsertion(newRoot->right);
+    this->recursiveInsertion(newRoot->left);
+
+    delete newRoot;
+}
+
+template <class T>
+    requires std::totally_ordered<T>
+void BinarySearchTree<T>::recursiveInsertion(BstNode<T> *node)
+{
+    if (node == nullptr)
+        return;
+
+    this->Insert(node->GetValue());
+
+    this->recursiveInsertion(node->left);
+    this->recursiveInsertion(node->right);
 }
 
 template <class T>

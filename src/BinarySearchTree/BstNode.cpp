@@ -31,3 +31,10 @@ void BstNode<T>::SetParent(BstNode *node)
 {
     this->parent = node;
 }
+
+template <class T>
+    requires std::totally_ordered<T>
+BstNode<T> *BstNode<T>::GetParent()
+{
+    return this->parent;
+}

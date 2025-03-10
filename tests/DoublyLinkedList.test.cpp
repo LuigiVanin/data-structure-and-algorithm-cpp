@@ -307,3 +307,88 @@ TEST_CASE("Testing LinkedList Unshift")
         }
     }
 }
+
+TEST_CASE("Testing DoublyLinkedList Insert", "[DoublyLinkedList]")
+{
+    SECTION("Testing Insert at beginning")
+    {
+        auto list = new DoublyLinkedList<int>();
+        list->Insert(0, 10);
+        REQUIRE(list->Length() == 1);
+        REQUIRE(list->At(0) == 10);
+        delete list;
+    }
+
+    SECTION("Testing Insert at end")
+    {
+        auto list = new DoublyLinkedList<int>();
+        list->Push(10);
+        list->Insert(1, 20);
+        REQUIRE(list->Length() == 2);
+        REQUIRE(list->At(1) == 20);
+        delete list;
+    }
+
+    SECTION("Testing Insert in middle")
+    {
+        auto list = new DoublyLinkedList<int>();
+        list->Push(10);
+        list->Push(30);
+        list->Insert(1, 20);
+        REQUIRE(list->Length() == 3);
+        REQUIRE(list->At(1) == 20);
+        delete list;
+    }
+
+    SECTION("Testing Insert out of bounds")
+    {
+        auto list = new DoublyLinkedList<int>();
+        REQUIRE_THROWS_AS(list->Insert(1, 10), std::invalid_argument);
+        delete list;
+    }
+}
+
+TEST_CASE("Testing DoublyLinkedList Remove", "[DoublyLinkedList]")
+{
+    SECTION("Testing Remove from beginning")
+    {
+        auto list = new DoublyLinkedList<int>();
+        list->Push(10);
+        list->Push(20);
+        list->Remove(0);
+        REQUIRE(list->Length() == 1);
+        REQUIRE(list->At(0) == 20);
+        delete list;
+    }
+
+    SECTION("Testing Remove from end")
+    {
+        auto list = new DoublyLinkedList<int>();
+        list->Push(10);
+        list->Push(20);
+        list->Remove(1);
+        REQUIRE(list->Length() == 1);
+        REQUIRE(list->At(0) == 10);
+        delete list;
+    }
+
+    SECTION("Testing Remove from middle")
+    {
+        auto list = new DoublyLinkedList<int>();
+        list->Push(10);
+        list->Push(20);
+        list->Push(30);
+        list->Remove(1);
+        REQUIRE(list->Length() == 2);
+        REQUIRE(list->At(0) == 10);
+        REQUIRE(list->At(1) == 30);
+        delete list;
+    }
+
+    SECTION("Testing Remove out of bounds")
+    {
+        auto list = new DoublyLinkedList<int>();
+        REQUIRE_THROWS_AS(list->Remove(0), std::invalid_argument);
+        delete list;
+    }
+}

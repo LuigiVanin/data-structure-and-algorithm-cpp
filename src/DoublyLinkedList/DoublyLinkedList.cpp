@@ -152,11 +152,72 @@ auto DoublyLinkedList<T>::Print() -> void
 template <class T>
 auto DoublyLinkedList<T>::Insert(int pos, T value) -> void
 {
-    throw new NotImplementedException();
+    if (pos < 0 || pos > this->length)
+        throw std::invalid_argument("Index out of bounds");
+
+    if (pos == 0)
+    {
+        this->Shift(value);
+        return;
+    }
+
+    if (pos == this->length)
+    {
+        this->Push(value);
+        return;
+    }
+
+    auto new_node = new DoublyLinkedNode<T>(value);
+    auto temp = this->head;
+
+    for (int i = 0; i < pos - 1; i++)
+        temp = temp->Next();
+
+    auto next = temp->Next();
+
+    if (next != nullptr)
+        next->AttachPrev(new_node);
+
+    new_node->AttachNext(next);
+    new_node->AttachPrev(temp);
+    temp->AttachNext(new_node);
+
+    this->length++;
 }
 
 template <class T>
 auto DoublyLinkedList<T>::Remove(int pos) -> void
 {
-    throw new NotImplementedException();
+    if (pos < 0 || pos >= this->length)
+        throw std::invalid_argument("Index out of bounds");
+
+    if (pos == 0)
+    {
+        this->Unshift();
+        return;
+    }
+
+    if (pos == this->length - 1)
+    {
+        this->Pop();
+        return;
+    }
+
+    auto temp = this->head;
+
+    for (int i = 0; i < pos; i++)
+        temp = temp->Next();
+
+    auto prev = temp->Prev();
+    auto next = temp->Next();
+
+    if (prev != nullptr)
+        prev->AttachNext(next);
+
+    if (next != nullptr)
+        next->AttachPrev(prev);
+
+    temp->Detach(); // Ensure the node is properly detached before deletion
+    delete temp;
+    this->length--;
 }

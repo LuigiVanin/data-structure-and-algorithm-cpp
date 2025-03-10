@@ -14,15 +14,16 @@ public:
     ~BstNode();
 
     T GetValue();
+    BstNode<T> *GetParent();
 
     void SetParent(BstNode *node);
 
-    BstNode *left = nullptr;
-    BstNode *right = nullptr;
+    BstNode<T> *left = nullptr;
+    BstNode<T> *right = nullptr;
     T value;
 
 private:
-    BstNode *parent = nullptr;
+    BstNode<T> *parent = nullptr;
 };
 
 #include "BstNode.cpp"
