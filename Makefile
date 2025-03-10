@@ -179,6 +179,19 @@ project_ArrayStack/fast:
 .PHONY : project_ArrayStack/fast
 
 #=============================================================================
+# Target rules for targets named project_BinarySearchTree
+
+# Build rule for target.
+project_BinarySearchTree: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 project_BinarySearchTree
+.PHONY : project_BinarySearchTree
+
+# fast build rule for target.
+project_BinarySearchTree/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_BinarySearchTree.dir/build.make CMakeFiles/project_BinarySearchTree.dir/build
+.PHONY : project_BinarySearchTree/fast
+
+#=============================================================================
 # Target rules for targets named project_DoublyLinkedList
 
 # Build rule for target.
@@ -302,6 +315,30 @@ tests/ArrayStack.test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_ArrayStack.dir/build.make CMakeFiles/project_ArrayStack.dir/tests/ArrayStack.test.cpp.s
 .PHONY : tests/ArrayStack.test.cpp.s
 
+tests/BinarySearchTree.test.o: tests/BinarySearchTree.test.cpp.o
+.PHONY : tests/BinarySearchTree.test.o
+
+# target to build an object file
+tests/BinarySearchTree.test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_BinarySearchTree.dir/build.make CMakeFiles/project_BinarySearchTree.dir/tests/BinarySearchTree.test.cpp.o
+.PHONY : tests/BinarySearchTree.test.cpp.o
+
+tests/BinarySearchTree.test.i: tests/BinarySearchTree.test.cpp.i
+.PHONY : tests/BinarySearchTree.test.i
+
+# target to preprocess a source file
+tests/BinarySearchTree.test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_BinarySearchTree.dir/build.make CMakeFiles/project_BinarySearchTree.dir/tests/BinarySearchTree.test.cpp.i
+.PHONY : tests/BinarySearchTree.test.cpp.i
+
+tests/BinarySearchTree.test.s: tests/BinarySearchTree.test.cpp.s
+.PHONY : tests/BinarySearchTree.test.s
+
+# target to generate assembly for a file
+tests/BinarySearchTree.test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_BinarySearchTree.dir/build.make CMakeFiles/project_BinarySearchTree.dir/tests/BinarySearchTree.test.cpp.s
+.PHONY : tests/BinarySearchTree.test.cpp.s
+
 tests/DoublyLinkedList.test.o: tests/DoublyLinkedList.test.cpp.o
 .PHONY : tests/DoublyLinkedList.test.o
 
@@ -411,6 +448,7 @@ help:
 	@echo "... data_structure_and_algorithm_cpp_lib"
 	@echo "... project_ArrayList"
 	@echo "... project_ArrayStack"
+	@echo "... project_BinarySearchTree"
 	@echo "... project_DoublyLinkedList"
 	@echo "... project_Hashmap"
 	@echo "... project_LinkedList"
@@ -424,6 +462,9 @@ help:
 	@echo "... tests/ArrayStack.test.o"
 	@echo "... tests/ArrayStack.test.i"
 	@echo "... tests/ArrayStack.test.s"
+	@echo "... tests/BinarySearchTree.test.o"
+	@echo "... tests/BinarySearchTree.test.i"
+	@echo "... tests/BinarySearchTree.test.s"
 	@echo "... tests/DoublyLinkedList.test.o"
 	@echo "... tests/DoublyLinkedList.test.i"
 	@echo "... tests/DoublyLinkedList.test.s"

@@ -76,6 +76,12 @@ void BinarySearchTree<T>::Remove(T value)
     if (newRoot == nullptr)
         throw new CouldNotFindItem();
 
+    // if (this->amount == 1 && this->GetRoot()->GetValue() == value)
+    // {
+    //     this->Clear();
+    //     return;
+    // }
+
     BstNode<T> *parent = newRoot->GetParent();
 
     if (parent->right != nullptr && parent->right->GetValue() == value)
@@ -84,10 +90,15 @@ void BinarySearchTree<T>::Remove(T value)
     else if (parent->left != nullptr && parent->left->GetValue() == value)
         parent->left = nullptr;
 
+    int tmpAmount = this->Amount();
     this->recursiveInsertion(newRoot->right);
     this->recursiveInsertion(newRoot->left);
+    this->amount = tmpAmount - 1;
 
-    delete newRoot;
+    if (newRoot != nullptr)
+    {
+        delete newRoot;
+    }
 }
 
 template <class T>
@@ -172,6 +183,9 @@ void BinarySearchTree<T>::Clear()
     this->amount = 0;
     this->depth = 0;
 
-    delete this->root;
+    if (this->root != nullptr)
+    {
+        delete this->root;
+    }
     this->root = nullptr;
 }
