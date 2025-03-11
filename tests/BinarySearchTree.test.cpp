@@ -5,7 +5,7 @@
 
 TEST_CASE("Test BinarySearchTree Initialization", "[BinarySearchTree]")
 {
-    SECTION("Testing with primitive types")
+    SECTION("Initialization with primitive types")
     {
         auto tree_int = new BinarySearchTree<int>();
         auto tree_char = new BinarySearchTree<char>();
@@ -26,8 +26,7 @@ TEST_CASE("Test BinarySearchTree Initialization", "[BinarySearchTree]")
 
 TEST_CASE("Testing BinarySearchTree Insert", "[BinarySearchTree]")
 {
-
-    SECTION("Testing Simple BinarySearchTree Insert")
+    SECTION("Simple Insert with integers")
     {
         auto bst = new BinarySearchTree<int>();
         int tempDepth = 0;
@@ -42,7 +41,7 @@ TEST_CASE("Testing BinarySearchTree Insert", "[BinarySearchTree]")
         }
     }
 
-    SECTION("Testing BinaryTreeSearch with char Insert")
+    SECTION("Insert with characters")
     {
         auto bst = new BinarySearchTree<char>();
 
@@ -59,7 +58,7 @@ TEST_CASE("Testing BinarySearchTree Insert", "[BinarySearchTree]")
         REQUIRE(bst->Amount() == 8);
     }
 
-    SECTION("Testing BinarySearchTree order of Insertion")
+    SECTION("Order of insertion")
     {
         auto bst = new BinarySearchTree<int>();
 
@@ -98,7 +97,7 @@ TEST_CASE("Testing BinarySearchTree Insert", "[BinarySearchTree]")
 
 TEST_CASE("Test BinarySearchTree Clear method")
 {
-    SECTION("Testing Clear method on an empty BinarySearchTree")
+    SECTION("Clear on an empty tree")
     {
         auto bst = new BinarySearchTree<int>();
 
@@ -115,7 +114,7 @@ TEST_CASE("Test BinarySearchTree Clear method")
         REQUIRE(bst->GetRoot() == nullptr);
     }
 
-    SECTION("Testing Clear methods on filled BinarySearchTree")
+    SECTION("Clear on a filled tree")
     {
         auto bst = new BinarySearchTree<int>();
         int tempDepth = 0;
@@ -137,7 +136,7 @@ TEST_CASE("Test BinarySearchTree Clear method")
 
 TEST_CASE("Test BinarySearchTree Search and HasValue Methods", "[BinarySearchTree]")
 {
-    SECTION("Testing Search on an empty BinarySearchTree")
+    SECTION("Search on an empty tree")
     {
         auto bst = new BinarySearchTree<int>();
 
@@ -149,7 +148,7 @@ TEST_CASE("Test BinarySearchTree Search and HasValue Methods", "[BinarySearchTre
         }
     }
 
-    SECTION("Testing Search with not found values")
+    SECTION("Search for non-existent values")
     {
         auto bst = new BinarySearchTree<int>();
         std::vector<int> targetValues = {};
@@ -169,7 +168,7 @@ TEST_CASE("Test BinarySearchTree Search and HasValue Methods", "[BinarySearchTre
         }
     }
 
-    SECTION("Testing Search with Finded values")
+    SECTION("Search for existing values")
     {
         auto bst = new BinarySearchTree<int>();
         std::vector<int> targetValues = {};
@@ -200,7 +199,7 @@ TEST_CASE("Test BinarySearchTree Search and HasValue Methods", "[BinarySearchTre
 
 TEST_CASE("Test Remove BinarySearchTree method", "[BinarySearchTree]")
 {
-    SECTION("Testing Simple Remove Usecase")
+    SECTION("Simple remove use case")
     {
         auto bst = new BinarySearchTree<int>();
         std::vector<int> targetValues = {};
@@ -218,7 +217,7 @@ TEST_CASE("Test Remove BinarySearchTree method", "[BinarySearchTree]")
         REQUIRE_FALSE(bst->HasValue(targetValues.at(4)));
     }
 
-    SECTION("Testing Removing All The items from the BinarySearchTree")
+    SECTION("Remove all items from the tree")
     {
         auto bst = new BinarySearchTree<int>();
         std::vector<int> targetValues = {};
@@ -230,18 +229,35 @@ TEST_CASE("Test Remove BinarySearchTree method", "[BinarySearchTree]")
             bst->Insert(random);
         }
 
-        // REQUIRE_NOTHROW(bst->Remove(targetValues.at(19)));
-        // REQUIRE_NOTHROW(bst->Remove(targetValues.at(18)));
-        // REQUIRE_NOTHROW(bst->Remove(targetValues.at(17)));
-        // REQUIRE_NOTHROW(bst->Remove(targetValues.at(16)));
-
         for (int i = 19; i >= 0; i--)
         {
             bst->Remove(targetValues.at(i));
         }
 
-        // REQUIRE(bst->Amount() == 0);
-        // REQUIRE(bst->Depth() == 0);
-        // REQUIRE(bst->GetRoot() == nullptr);
+        REQUIRE(bst->Amount() == 0);
+        REQUIRE(bst->Depth() == 0);
+        REQUIRE(bst->GetRoot() == nullptr);
+    }
+
+    SECTION("Remove non-existent value from filled tree")
+    {
+        auto bst = new BinarySearchTree<int>();
+
+        for (int i = 0; i < 20; i++)
+        {
+            const int random = rand() % 100;
+            bst->Insert(random);
+        }
+
+        int random = rand() % 100;
+
+        REQUIRE_THROWS(bst->Remove(random + 100));
+    }
+
+    SECTION("Remove from an empty tree")
+    {
+        auto bst = new BinarySearchTree<int>();
+
+        REQUIRE_THROWS(bst->Remove(19));
     }
 }

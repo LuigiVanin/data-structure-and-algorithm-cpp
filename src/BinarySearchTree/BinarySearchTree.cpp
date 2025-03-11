@@ -71,34 +71,40 @@ template <class T>
     requires std::totally_ordered<T>
 void BinarySearchTree<T>::Remove(T value)
 {
-    BstNode<T> *newRoot = this->Search(value);
+    BstNode<T> *nodeToRemove = this->Search(value);
 
-    if (newRoot == nullptr)
+    if (nodeToRemove == nullptr)
         throw new CouldNotFindItem();
 
-    // if (this->amount == 1 && this->GetRoot()->GetValue() == value)
-    // {
-    //     this->Clear();
-    //     return;
-    // }
+    BstNode<T> *parent = nodeToRemove->GetParent();
 
-    BstNode<T> *parent = newRoot->GetParent();
+    if (parent == nullptr) // Node to remove is the root
+    {
+        BstNode<T> *rightSubtree = nodeToRemove->right;
+        BstNode<T> *leftSubtree = nodeToRemove->left;
+
+        this->root = nullptr;
+        this->amount = 0;
+        this->depth = 0;
+
+        this->recursiveInsertion(leftSubtree);
+        this->recursiveInsertion(rightSubtree);
+
+        delete nodeToRemove;
+        return;
+    }
 
     if (parent->right != nullptr && parent->right->GetValue() == value)
         parent->right = nullptr;
-
     else if (parent->left != nullptr && parent->left->GetValue() == value)
         parent->left = nullptr;
 
     int tmpAmount = this->Amount();
-    this->recursiveInsertion(newRoot->right);
-    this->recursiveInsertion(newRoot->left);
+    this->recursiveInsertion(nodeToRemove->right);
+    this->recursiveInsertion(nodeToRemove->left);
     this->amount = tmpAmount - 1;
 
-    if (newRoot != nullptr)
-    {
-        delete newRoot;
-    }
+    delete nodeToRemove;
 }
 
 template <class T>
