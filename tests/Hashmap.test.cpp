@@ -15,6 +15,8 @@ TEST_CASE("Test Hashmap Initialization", "[Hashmap]")
         auto map = new Hashmap<std::string, int>();
         REQUIRE(map->GetLength() == 0);
         REQUIRE(map->GetBuckets() == 8);
+
+        delete map;
     }
 
     SECTION("Testing with custom types")
@@ -209,6 +211,8 @@ TEST_CASE("Testing Clear method", "[Hashmap]")
         {
             REQUIRE(map->Get(i).IsNone());
         }
+
+        delete map;
     }
 
     SECTION("Testing remove method on specific key")
