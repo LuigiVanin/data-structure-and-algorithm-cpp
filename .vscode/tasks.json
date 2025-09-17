@@ -28,6 +28,17 @@
             "label": "Run tests",
             "command": "test",
             "detail": "run tests using cmake"
+        },
+        {
+            "label": "CMake Build",
+            "type": "shell",
+            "command": "./script.sh --build --debug",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Builds the CMake project."
         }
     ],
     "version": "2.0.0"

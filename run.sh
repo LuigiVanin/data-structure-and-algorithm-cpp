@@ -2,7 +2,7 @@ flag=$1
 test_target=$2
 for last; do true; done
 
-cmake .
+cmake -D CMAKE_BUILD_TYPE=Debug .
 make 
 
 if [ "$flag" = "test" ]; then
