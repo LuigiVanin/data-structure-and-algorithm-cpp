@@ -87,8 +87,11 @@ void BinarySearchTree<T>::Remove(T value)
         this->amount = 0;
         this->depth = 0;
 
-        this->recursiveInsertion(leftSubtree);
-        this->recursiveInsertion(rightSubtree);
+        // Only insert children, not the node itself
+        if (leftSubtree)
+            this->recursiveInsertion(leftSubtree);
+        if (rightSubtree)
+            this->recursiveInsertion(rightSubtree);
 
         delete nodeToRemove;
         return;
@@ -100,8 +103,11 @@ void BinarySearchTree<T>::Remove(T value)
         parent->left = nullptr;
 
     int tmpAmount = this->Amount();
-    this->recursiveInsertion(nodeToRemove->right);
-    this->recursiveInsertion(nodeToRemove->left);
+    // Only insert children, not the node itself
+    if (nodeToRemove->right)
+        this->recursiveInsertion(nodeToRemove->right);
+    if (nodeToRemove->left)
+        this->recursiveInsertion(nodeToRemove->left);
     this->amount = tmpAmount - 1;
 
     delete nodeToRemove;
@@ -115,9 +121,10 @@ void BinarySearchTree<T>::recursiveInsertion(BstNode<T> *node)
         return;
 
     this->Insert(node->GetValue());
-
-    this->recursiveInsertion(node->left);
-    this->recursiveInsertion(node->right);
+    if (node->left)
+        this->recursiveInsertion(node->left);
+    if (node->right)
+        this->recursiveInsertion(node->right);
 }
 
 template <class T>

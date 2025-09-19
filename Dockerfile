@@ -22,4 +22,4 @@ RUN cmake .
 # Compile your C++ code
 RUN make
 
-CMD ["ctest -C Debug -T test --output-on-failure"]
+CMD ["ctest", "--output-on-failure"]
