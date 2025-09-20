@@ -42,13 +42,17 @@ public:
 };
 
 template <class T>
-class GraphWithBFS : GraphBase<T>, IGraph
+class GraphWithBFS : public GraphBase<T>, public IGraph
 {
+public:
+    bool IsConnected(unsigned int origin, unsigned int target) override;
 };
 
 template <class T>
 class GraphWithDFS : GraphBase<T>, IGraph
 {
+public:
+    bool IsConnected(unsigned int origin, unsigned int target) override;
 };
 
 #include "Graph.cpp"

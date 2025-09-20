@@ -1,5 +1,7 @@
 #include "Graph.h"
 #include "../Hashmap/Hashmap.h"
+#include "../LinkedQueue/LinkedQueue.h"
+#include "../ArrayList/ArrayList.h"
 
 template <class T>
 GraphBase<T>::GraphBase()
@@ -14,6 +16,7 @@ GraphBase<T>::~GraphBase()
 {
     for (int i = 0; i < edges.Length(); ++i)
         delete this->edges.At(i);
+
 }
 
 template <class T>
@@ -91,3 +94,21 @@ void GraphBase<T>::PrintGraph()
         std::cout << "\n";
     }
 }
+
+template <class T>
+bool GraphWithDFS<T>::IsConnected(unsigned int origin, unsigned int target)
+{
+    return false;
+}
+
+template <class T>
+inline bool GraphWithBFS<T>::IsConnected(unsigned int origin, unsigned int target)
+{
+    ArrayList<bool> visited;
+    LinkedQueue<int> queue;
+
+    queue.Add(origin);
+    return false;
+}
+
+// #endif // GRAPH_CPP_INCLUDED

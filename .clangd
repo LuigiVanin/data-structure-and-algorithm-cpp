@@ -1,0 +1,23 @@
+If:
+  PathMatch: .*\.h
+CompileFlags:
+  Add: [-x, c++]
+---
+If:
+  PathMatch: .*\.cpp
+CompileFlags:
+  Add: [
+    "-std=c++23",
+    "-g", 
+    "-Wall",
+    "-Wextra",
+    "-I./src",
+  ]
+---
+Diagnostics:
+  Suppress: ["pp_including_mainfile_in_preamble"]
+---
+InlayHints:
+  Enabled: Yes
+  ParameterNames: No
+  DeducedTypes: YES
