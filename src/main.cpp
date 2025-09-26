@@ -9,11 +9,15 @@
 #include <vector>
 #include "Graph/Graph.h"
 
+void updateArray(std::vector<bool> &arr, int index) {
+    arr[index] = true;
+}
+
 int main()
 {
     std::cout << "Hello, World!!!" << std::endl;
 
-    auto graph = new GraphBase<std::string>();
+    auto graph = new GraphWithBFS<std::string>();
     auto vertex_id = graph->AddVertex("Joao");
 
     std::cout << "Vertex Id: " << vertex_id << "\n";
@@ -27,8 +31,13 @@ int main()
     std::cout << "Vertex Id: " << vertex_id << "\n";
 
     vertex_id = graph->AddVertex("Henrique");
-
+    
     std::cout << "Vertex Id: " << vertex_id << "\n";
+    
+    vertex_id = graph->AddVertex("Mario");
+
+    vertex_id = graph->AddVertex("Joao");
+
 
     // graph->AddDirectionalEdge(0, 1);
     // graph->AddDirectionalEdge(0, 3);
@@ -38,12 +47,14 @@ int main()
     // graph->AddDirectionalEdge(2, 1);
     // graph->AddDirectionalEdge(2, 2);
     // graph->AddDirectionalEdge(2, 3);
-    graph->AddEdge(3, 0);
+    // graph->AddEdge(3, 0);
     graph->AddEdge(3, 1);
     graph->AddEdge(3, 2);
     graph->AddEdge(2, 2);
     graph->AddEdge(2, 0);
     graph->AddEdge(3, 3);
+    graph->AddEdge(4, 5);
+
 
     // std::cout << "Teste: " << graph->edges.At(2)->At(0).id << "\n";
     // std::cout << "Teste: " << graph->GetVertexContent(3) << "\n";
@@ -51,6 +62,12 @@ int main()
     // graph->AddEdge(2, 1);
 
     graph->PrintGraph();
+
+    auto result = graph->IsConnected(4, 1);
+
+
+    std::cout << "Resultado: " << result << "\n";
+
 
     return 0;
 }

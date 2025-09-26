@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <vector>
 #include "../ArrayList/ArrayList.h"
 #include "../Hashmap/Hashmap.h"
 
@@ -46,6 +47,8 @@ class GraphWithBFS : public GraphBase<T>, public IGraph
 {
 public:
     bool IsConnected(unsigned int origin, unsigned int target) override;
+
+    void Bfs(unsigned int origin, std::vector<bool> &visited);
 };
 
 template <class T>

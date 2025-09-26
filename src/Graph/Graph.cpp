@@ -2,6 +2,7 @@
 #include "../Hashmap/Hashmap.h"
 #include "../LinkedQueue/LinkedQueue.h"
 #include "../ArrayList/ArrayList.h"
+#include <vector>
 
 template <class T>
 GraphBase<T>::GraphBase()
@@ -104,11 +105,35 @@ bool GraphWithDFS<T>::IsConnected(unsigned int origin, unsigned int target)
 template <class T>
 inline bool GraphWithBFS<T>::IsConnected(unsigned int origin, unsigned int target)
 {
-    ArrayList<bool> visited;
+    std::vector<bool> visited(this->edges.Length(), false);
+
+    this->Bfs(origin, visited);
+
+    return visited[target];
+}
+
+template <class T>
+void GraphWithBFS<T>::Bfs(unsigned int origin, std::vector<bool> &visited) {
     LinkedQueue<int> queue;
 
     queue.Add(origin);
-    return false;
+
+    while(!queue.IsEmpty()) {
+        auto head = queue.Remove();    
+        
+        if (!visited[head]) 
+            visited[head] = true;
+        
+        ArrayList<GraphNode>* current_edge = this->edges.At(head);
+        
+        for (int i = 0; i < current_edge->Length(); i++) {
+            auto current_vertex_id = current_edge->At(i).id;
+            
+            if (!visited[current_vertex_id]) {
+                queue.Add(current_vertex_id);
+            }
+        }
+    }
 }
 
 // #endif // GRAPH_CPP_INCLUDED
