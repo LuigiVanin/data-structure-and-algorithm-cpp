@@ -52,14 +52,14 @@ void GraphBase<T>::AddDirectionalEdge(unsigned int from,
             throw std::runtime_error("edges already connected");
 
     GraphNode to_node = {
-      .weight = weight,
-      .id     = (int)to,
+        .weight = weight,
+        .id     = (int)to,
     };
 
     this->edges.At(from)->Push(to_node);
 }
 
-template <class T> T GraphBase<T>::GetVertexContent(unsigned int vertex_id) {
+template <class T> T GraphBase<T>::GetVertex(unsigned int vertex_id) {
     Option<T> value = this->content_table.Get(vertex_id);
 
     if (value.IsNone()) throw std::runtime_error("Vertex not found");
@@ -78,21 +78,27 @@ template <class T> void GraphBase<T>::PrintGraph() {
 }
 
 template <class T>
-bool GraphWithDFS<T>::IsConnected(unsigned int origin, unsigned int target) {
-    return false;
+void GraphWithDFS<T>::Dfs(unsigned int origin, std::vector<bool> &visited) {
+    if (!visited[origin]) visited[origin] = true;
+
+    ArrayList<GraphNode> *current_edge = this->edges.At(origin);
+
+    for (int i = 0; i < current_edge->Length(); i++) {
+        auto current_vertex_id = current_edge->At(i).id;
+        if (!visited[current_vertex_id]) this->Dfs(current_vertex_id, visited);
+    }
 }
 
 template <class T>
-inline bool GraphWithBFS<T>::IsConnected(unsigned int origin,
-                                         unsigned int target) {
+bool GraphWithDFS<T>::IsConnected(unsigned int origin, unsigned int target) {
     std::vector<bool> visited(this->edges.Length(), false);
 
-    this->Bfs(origin, visited);
+    this->Dfs(origin, visited);
 
     return visited[target];
 }
 
-template <class T> int GraphWithBFS<T>::ComponentsCount() {
+template <class T> int GraphWithDFS<T>::ComponentsCount() {
     int counter = 0;
 
     std::vector<bool> visited(this->edges.Length(), false);
@@ -100,7 +106,7 @@ template <class T> int GraphWithBFS<T>::ComponentsCount() {
     for (int i = 0; i < (int)visited.size(); i++) {
         if (!visited[i]) {
             counter++;
-            this->Bfs(i, visited);
+            this->Dfs(i, visited);
         }
     }
 
@@ -128,4 +134,29 @@ void GraphWithBFS<T>::Bfs(unsigned int origin, std::vector<bool> &visited) {
             }
         }
     }
+}
+
+template <class T>
+inline bool GraphWithBFS<T>::IsConnected(unsigned int origin,
+                                         unsigned int target) {
+    std::vector<bool> visited(this->edges.Length(), false);
+
+    this->Bfs(origin, visited);
+
+    return visited[target];
+}
+
+template <class T> int GraphWithBFS<T>::ComponentsCount() {
+    int counter = 0;
+
+    std::vector<bool> visited(this->edges.Length(), false);
+
+    for (int i = 0; i < (int)visited.size(); i++) {
+        if (!visited[i]) {
+            counter++;
+            this->Bfs(i, visited);
+        }
+    }
+
+    return counter;
 }

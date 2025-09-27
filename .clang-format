@@ -1,4 +1,4 @@
-AccessModifierOffset: 2
+AccessModifierOffset: 4
 AlignAfterOpenBracket: true
 AlignConsecutiveAssignments: true
 AlignConsecutiveDeclarations: true
@@ -22,8 +22,8 @@ BreakBeforeTernaryOperators: true
 BreakStringLiterals: false
 ColumnLimit: 80
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
-ConstructorInitializerIndentWidth: 2
-ContinuationIndentWidth: 2
+ConstructorInitializerIndentWidth: 4
+ContinuationIndentWidth: 4
 CompactNamespaces: false
 IndentCaseLabels: true
 IndentWidth: 4

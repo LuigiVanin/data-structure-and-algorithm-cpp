@@ -13,10 +13,10 @@ struct GraphNode {
 };
 
 template <class T> class GraphBase {
-      private:
+        private:
     unsigned int amount = 0;
 
-      public:
+        public:
     ArrayList<ArrayList<GraphNode> *> edges;
     Hashmap<int, T>                   content_table;
     GraphBase();
@@ -32,27 +32,31 @@ template <class T> class GraphBase {
                  float        weight = 1); // from -> to
     // to -> from
 
-    T GetVertexContent(unsigned int vertex_id);
+    T GetVertex(unsigned int vertex_id);
+
+    std::vector<GraphNode> Dijkstra(unsigned int src);
 
     void PrintGraph();
 };
 
 class IGraph {
-      public:
+        public:
     virtual bool IsConnected(unsigned int origin, unsigned int target) = 0;
     virtual int  ComponentsCount()                                     = 0;
 };
 
 template <class T> class GraphWithBFS : public GraphBase<T>, public IGraph {
-      public:
+        public:
     void Bfs(unsigned int origin, std::vector<bool> &visited);
 
     bool IsConnected(unsigned int origin, unsigned int target) override;
     int  ComponentsCount() override;
 };
 
-template <class T> class GraphWithDFS : GraphBase<T>, IGraph {
-      public:
+template <class T> class GraphWithDFS : public GraphBase<T>, public IGraph {
+        public:
+    void Dfs(unsigned int origin, std::vector<bool> &visited);
+
     bool IsConnected(unsigned int origin, unsigned int target) override;
     int  ComponentsCount() override;
 };

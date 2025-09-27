@@ -16,7 +16,7 @@ void updateArray(std::vector<bool> &arr, int index) {
 int main() {
     std::cout << "Hello, World!!!" << std::endl;
 
-    auto graph     = new GraphWithBFS<std::string>();
+    auto graph     = new GraphWithDFS<std::string>();
     auto vertex_id = graph->AddVertex("Joao");
 
     std::cout << "Vertex Id: " << vertex_id << "\n";
@@ -54,8 +54,8 @@ int main() {
     graph->AddEdge(2, 0);
     graph->AddEdge(3, 3);
     graph->AddEdge(4, 5);
-    graph->AddEdge(4, 6);
-    graph->AddEdge(3, 5);
+    // graph->AddEdge(4, 6);
+    // graph->AddEdge(3, 5);
 
     // std::cout << "Teste: " << graph->edges.At(2)->At(0).id << "\n";
     // std::cout << "Teste: " << graph->GetVertexContent(3) << "\n";
@@ -63,8 +63,14 @@ int main() {
     // graph->AddEdge(2, 1);
 
     graph->PrintGraph();
+    std::vector<bool> visited(graph->edges.Length(), false);
+    graph->Dfs(0, visited);
 
-    auto result = graph->IsConnected(4, 1);
+    for (const bool &item : visited) {
+        std::cout << "" << item << ", ";
+    }
+
+    auto result = graph->IsConnected(6, 1);
 
     std::cout << "Resultado: " << result << "\n";
 
