@@ -1,34 +1,25 @@
 #include "Graph.h"
+#include "../ArrayList/ArrayList.h"
 #include "../Hashmap/Hashmap.h"
 #include "../LinkedQueue/LinkedQueue.h"
-#include "../ArrayList/ArrayList.h"
 #include <vector>
 
-template <class T>
-GraphBase<T>::GraphBase()
-{
+template <class T> GraphBase<T>::GraphBase() {
     std::cout << "Teste" << std::endl;
     // this->edges = ArrayList<ArrayList<GraphNode> *>();
     std::cout << "Teste" << this->edges.Length() << std::endl;
 }
 
-template <class T>
-GraphBase<T>::~GraphBase()
-{
-    for (int i = 0; i < edges.Length(); ++i)
-        delete this->edges.At(i);
-
+template <class T> GraphBase<T>::~GraphBase() {
+    for (int i = 0; i < edges.Length(); ++i) delete this->edges.At(i);
 }
 
-template <class T>
-unsigned int GraphBase<T>::AddVertex(T content)
-{
+template <class T> unsigned int GraphBase<T>::AddVertex(T content) {
     auto empty = new ArrayList<GraphNode>();
     this->edges.Push(empty);
 
     auto node_id = this->edges.Length() - 1;
-    if (node_id < 0)
-        throw std::runtime_error("Node id value is not expected");
+    if (node_id < 0) throw std::runtime_error("Node id value is not expected");
 
     this->content_table.Put(node_id, content);
 
@@ -36,22 +27,21 @@ unsigned int GraphBase<T>::AddVertex(T content)
 }
 
 template <class T>
-void GraphBase<T>::AddEdge(unsigned int from, unsigned int to, float weight)
-{
+void GraphBase<T>::AddEdge(unsigned int from, unsigned int to, float weight) {
     if (from >= this->edges.Length() || to >= this->edges.Length())
         throw std::runtime_error("edges not found");
 
     this->AddDirectionalEdge(from, to);
 
-    if (from == to)
-        return;
+    if (from == to) return;
 
     this->AddDirectionalEdge(to, from);
 }
 
 template <class T>
-void GraphBase<T>::AddDirectionalEdge(unsigned int from, unsigned int to, float weight)
-{
+void GraphBase<T>::AddDirectionalEdge(unsigned int from,
+                                      unsigned int to,
+                                      float        weight) {
     if (from >= this->edges.Length() || to >= this->edges.Length())
         throw std::runtime_error("edges not found");
 
@@ -62,34 +52,25 @@ void GraphBase<T>::AddDirectionalEdge(unsigned int from, unsigned int to, float 
             throw std::runtime_error("edges already connected");
 
     GraphNode to_node = {
-        .weight = weight,
-        .id = (int)to,
+      .weight = weight,
+      .id     = (int)to,
     };
 
     this->edges.At(from)->Push(to_node);
 }
 
-template <class T>
-T GraphBase<T>::GetVertexContent(unsigned int vertex_id)
-{
+template <class T> T GraphBase<T>::GetVertexContent(unsigned int vertex_id) {
     Option<T> value = this->content_table.Get(vertex_id);
 
-    if (value.IsNone())
-        throw std::runtime_error("Vertex not found");
+    if (value.IsNone()) throw std::runtime_error("Vertex not found");
 
     return value.Unwrap();
 }
 
-template <class T>
-void GraphBase<T>::PrintGraph()
-{
-    auto t = this->edges.At(0);
-
-    for (int i = 0; i < this->edges.Length(); i++)
-    {
+template <class T> void GraphBase<T>::PrintGraph() {
+    for (int i = 0; i < this->edges.Length(); i++) {
         std::cout << i << ": ";
-        for (int j = 0; j < this->edges.At(i)->Length(); j++)
-        {
+        for (int j = 0; j < this->edges.At(i)->Length(); j++) {
             std::cout << this->edges.At(i)->At(j).id << " ";
         }
         std::cout << "\n";
@@ -97,19 +78,33 @@ void GraphBase<T>::PrintGraph()
 }
 
 template <class T>
-bool GraphWithDFS<T>::IsConnected(unsigned int origin, unsigned int target)
-{
+bool GraphWithDFS<T>::IsConnected(unsigned int origin, unsigned int target) {
     return false;
 }
 
 template <class T>
-inline bool GraphWithBFS<T>::IsConnected(unsigned int origin, unsigned int target)
-{
+inline bool GraphWithBFS<T>::IsConnected(unsigned int origin,
+                                         unsigned int target) {
     std::vector<bool> visited(this->edges.Length(), false);
 
     this->Bfs(origin, visited);
 
     return visited[target];
+}
+
+template <class T> int GraphWithBFS<T>::ComponentsCount() {
+    int counter = 0;
+
+    std::vector<bool> visited(this->edges.Length(), false);
+
+    for (int i = 0; i < (int)visited.size(); i++) {
+        if (!visited[i]) {
+            counter++;
+            this->Bfs(i, visited);
+        }
+    }
+
+    return counter;
 }
 
 template <class T>
@@ -118,22 +113,19 @@ void GraphWithBFS<T>::Bfs(unsigned int origin, std::vector<bool> &visited) {
 
     queue.Add(origin);
 
-    while(!queue.IsEmpty()) {
-        auto head = queue.Remove();    
-        
-        if (!visited[head]) 
-            visited[head] = true;
-        
-        ArrayList<GraphNode>* current_edge = this->edges.At(head);
-        
+    while (!queue.IsEmpty()) {
+        auto head = queue.Remove();
+
+        if (!visited[head]) visited[head] = true;
+
+        ArrayList<GraphNode> *current_edge = this->edges.At(head);
+
         for (int i = 0; i < current_edge->Length(); i++) {
             auto current_vertex_id = current_edge->At(i).id;
-            
+
             if (!visited[current_vertex_id]) {
                 queue.Add(current_vertex_id);
             }
         }
     }
 }
-
-// #endif // GRAPH_CPP_INCLUDED

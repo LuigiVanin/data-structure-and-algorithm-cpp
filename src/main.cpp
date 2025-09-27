@@ -6,18 +6,17 @@
 // #include "LinkedQueue/LinkedQueue.h"
 // #include "Hashmap/Hashmap.h"
 // #include "BinarySearchTree/BinarySearchTree.h"
-#include <vector>
 #include "Graph/Graph.h"
+#include <vector>
 
 void updateArray(std::vector<bool> &arr, int index) {
     arr[index] = true;
 }
 
-int main()
-{
+int main() {
     std::cout << "Hello, World!!!" << std::endl;
 
-    auto graph = new GraphWithBFS<std::string>();
+    auto graph     = new GraphWithBFS<std::string>();
     auto vertex_id = graph->AddVertex("Joao");
 
     std::cout << "Vertex Id: " << vertex_id << "\n";
@@ -31,13 +30,14 @@ int main()
     std::cout << "Vertex Id: " << vertex_id << "\n";
 
     vertex_id = graph->AddVertex("Henrique");
-    
+
     std::cout << "Vertex Id: " << vertex_id << "\n";
-    
+
     vertex_id = graph->AddVertex("Mario");
 
     vertex_id = graph->AddVertex("Joao");
 
+    vertex_id = graph->AddVertex("Pablo");
 
     // graph->AddDirectionalEdge(0, 1);
     // graph->AddDirectionalEdge(0, 3);
@@ -54,7 +54,8 @@ int main()
     graph->AddEdge(2, 0);
     graph->AddEdge(3, 3);
     graph->AddEdge(4, 5);
-
+    graph->AddEdge(4, 6);
+    graph->AddEdge(3, 5);
 
     // std::cout << "Teste: " << graph->edges.At(2)->At(0).id << "\n";
     // std::cout << "Teste: " << graph->GetVertexContent(3) << "\n";
@@ -65,9 +66,10 @@ int main()
 
     auto result = graph->IsConnected(4, 1);
 
-
     std::cout << "Resultado: " << result << "\n";
 
+    auto count = graph->ComponentsCount();
+    std::cout << "Counter: " << count << "\n";
 
     return 0;
 }
