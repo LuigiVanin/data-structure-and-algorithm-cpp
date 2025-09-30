@@ -19,6 +19,7 @@ template <class T> class GraphBase {
         public:
     ArrayList<ArrayList<GraphNode> *> edges;
     Hashmap<int, T>                   content_table;
+
     GraphBase();
     ~GraphBase();
 
@@ -34,7 +35,7 @@ template <class T> class GraphBase {
 
     T GetVertex(unsigned int vertex_id);
 
-    std::vector<GraphNode> Dijkstra(unsigned int src);
+    std::vector<float> Dijkstra(unsigned int src);
 
     void PrintGraph();
 };

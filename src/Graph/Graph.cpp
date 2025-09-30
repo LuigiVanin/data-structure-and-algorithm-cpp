@@ -2,6 +2,7 @@
 #include "../ArrayList/ArrayList.h"
 #include "../Hashmap/Hashmap.h"
 #include "../LinkedQueue/LinkedQueue.h"
+#include <cmath>
 #include <vector>
 
 template <class T> GraphBase<T>::GraphBase() {
@@ -59,7 +60,8 @@ void GraphBase<T>::AddDirectionalEdge(unsigned int from,
     this->edges.At(from)->Push(to_node);
 }
 
-template <class T> T GraphBase<T>::GetVertex(unsigned int vertex_id) {
+template <class T> //
+T GraphBase<T>::GetVertex(unsigned int vertex_id) {
     Option<T> value = this->content_table.Get(vertex_id);
 
     if (value.IsNone()) throw std::runtime_error("Vertex not found");
@@ -67,7 +69,8 @@ template <class T> T GraphBase<T>::GetVertex(unsigned int vertex_id) {
     return value.Unwrap();
 }
 
-template <class T> void GraphBase<T>::PrintGraph() {
+template <class T> //
+void GraphBase<T>::PrintGraph() {
     for (int i = 0; i < this->edges.Length(); i++) {
         std::cout << i << ": ";
         for (int j = 0; j < this->edges.At(i)->Length(); j++) {
@@ -75,6 +78,14 @@ template <class T> void GraphBase<T>::PrintGraph() {
         }
         std::cout << "\n";
     }
+}
+
+template <class T> //
+std::vector<float> GraphBase<T>::Dijkstra(unsigned int src) {
+    std::vector<bool>  visited(this->edges.Length(), false);
+    std::vector<float> distances(this->edges.Length(), MAXFLOAT);
+
+    distances[src] = 0;
 }
 
 template <class T>
@@ -98,7 +109,8 @@ bool GraphWithDFS<T>::IsConnected(unsigned int origin, unsigned int target) {
     return visited[target];
 }
 
-template <class T> int GraphWithDFS<T>::ComponentsCount() {
+template <class T> //
+int GraphWithDFS<T>::ComponentsCount() {
     int counter = 0;
 
     std::vector<bool> visited(this->edges.Length(), false);
