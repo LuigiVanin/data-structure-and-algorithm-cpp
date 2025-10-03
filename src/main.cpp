@@ -77,5 +77,13 @@ int main() {
     auto count = graph->ComponentsCount();
     std::cout << "Counter: " << count << "\n";
 
+    auto distances = graph->Dijkstra(0);
+
+    std::cout << "Dikjstra: " << "\n";
+
+    for (const auto &d : distances) {
+        std::cout << d << "\n";
+    }
+
     return 0;
 }

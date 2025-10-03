@@ -15,7 +15,7 @@ template <class T> GraphBase<T>::~GraphBase() {
     for (int i = 0; i < edges.Length(); ++i) delete this->edges.At(i);
 }
 
-template <class T> unsigned int GraphBase<T>::AddVertex(T content) {
+template <class T> uint GraphBase<T>::AddVertex(T content) {
     auto empty = new ArrayList<GraphNode>();
     this->edges.Push(empty);
 
@@ -24,25 +24,23 @@ template <class T> unsigned int GraphBase<T>::AddVertex(T content) {
 
     this->content_table.Put(node_id, content);
 
-    return (unsigned int)node_id;
+    return (uint)node_id;
 }
 
 template <class T>
-void GraphBase<T>::AddEdge(unsigned int from, unsigned int to, float weight) {
+void GraphBase<T>::AddEdge(uint from, uint to, float weight) {
     if (from >= this->edges.Length() || to >= this->edges.Length())
         throw std::runtime_error("edges not found");
 
-    this->AddDirectionalEdge(from, to);
+    this->AddDirectionalEdge(from, to, weight);
 
     if (from == to) return;
 
-    this->AddDirectionalEdge(to, from);
+    this->AddDirectionalEdge(to, from, weight);
 }
 
 template <class T>
-void GraphBase<T>::AddDirectionalEdge(unsigned int from,
-                                      unsigned int to,
-                                      float        weight) {
+void GraphBase<T>::AddDirectionalEdge(uint from, uint to, float weight) {
     if (from >= this->edges.Length() || to >= this->edges.Length())
         throw std::runtime_error("edges not found");
 
@@ -54,14 +52,14 @@ void GraphBase<T>::AddDirectionalEdge(unsigned int from,
 
     GraphNode to_node = {
         .weight = weight,
-        .id     = (int)to,
+        .id     = to,
     };
 
     this->edges.At(from)->Push(to_node);
 }
 
 template <class T> //
-T GraphBase<T>::GetVertex(unsigned int vertex_id) {
+T GraphBase<T>::GetVertex(uint vertex_id) {
     Option<T> value = this->content_table.Get(vertex_id);
 
     if (value.IsNone()) throw std::runtime_error("Vertex not found");
@@ -81,15 +79,32 @@ void GraphBase<T>::PrintGraph() {
 }
 
 template <class T> //
-std::vector<float> GraphBase<T>::Dijkstra(unsigned int src) {
+std::vector<float> GraphBase<T>::Dijkstra(uint src) {
     std::vector<bool>  visited(this->edges.Length(), false);
     std::vector<float> distances(this->edges.Length(), MAXFLOAT);
 
     distances[src] = 0;
+
+    for (int i = 0; i < this->edges.Length(); i++) {
+        visited[i]        = true;
+        auto current_node = this->edges.At(i);
+
+        for (int j = 0; j < current_node->Length(); j++) {
+            auto target_node    = current_node->At(j);
+            auto current_weight = target_node.weight;
+            auto acc_distance   = distances[i] + current_weight;
+
+            if (acc_distance < distances[target_node.id]) {
+                distances[target_node.id] = acc_distance;
+            }
+        }
+    }
+
+    return distances;
 }
 
 template <class T>
-void GraphWithDFS<T>::Dfs(unsigned int origin, std::vector<bool> &visited) {
+void GraphWithDFS<T>::Dfs(uint origin, std::vector<bool> &visited) {
     if (!visited[origin]) visited[origin] = true;
 
     ArrayList<GraphNode> *current_edge = this->edges.At(origin);
@@ -100,8 +115,7 @@ void GraphWithDFS<T>::Dfs(unsigned int origin, std::vector<bool> &visited) {
     }
 }
 
-template <class T>
-bool GraphWithDFS<T>::IsConnected(unsigned int origin, unsigned int target) {
+template <class T> bool GraphWithDFS<T>::IsConnected(uint origin, uint target) {
     std::vector<bool> visited(this->edges.Length(), false);
 
     this->Dfs(origin, visited);
@@ -126,7 +140,7 @@ int GraphWithDFS<T>::ComponentsCount() {
 }
 
 template <class T>
-void GraphWithBFS<T>::Bfs(unsigned int origin, std::vector<bool> &visited) {
+void GraphWithBFS<T>::Bfs(uint origin, std::vector<bool> &visited) {
     LinkedQueue<int> queue;
 
     queue.Add(origin);
@@ -149,8 +163,7 @@ void GraphWithBFS<T>::Bfs(unsigned int origin, std::vector<bool> &visited) {
 }
 
 template <class T>
-inline bool GraphWithBFS<T>::IsConnected(unsigned int origin,
-                                         unsigned int target) {
+inline bool GraphWithBFS<T>::IsConnected(uint origin, uint target) {
     std::vector<bool> visited(this->edges.Length(), false);
 
     this->Bfs(origin, visited);

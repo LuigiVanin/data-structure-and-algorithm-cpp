@@ -1,6 +1,7 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
+#include <sys/types.h>
 #pragma once
 
 #include "../ArrayList/ArrayList.h"
@@ -9,12 +10,12 @@
 
 struct GraphNode {
     float weight;
-    int   id;
+    uint  id;
 };
 
 template <class T> class GraphBase {
         private:
-    unsigned int amount = 0;
+    uint amount = 0;
 
         public:
     ArrayList<ArrayList<GraphNode> *> edges;
@@ -23,42 +24,41 @@ template <class T> class GraphBase {
     GraphBase();
     ~GraphBase();
 
-    unsigned int AddVertex(T content);
-    void         AddDirectionalEdge(unsigned int from,
-                                    unsigned int to,
-                                    float = 1.0); // from -> to
+    uint AddVertex(T content);
+    void AddDirectionalEdge(uint from, uint to,
+                            float = 1.0); // from -> to
 
-    void AddEdge(unsigned int from,
-                 unsigned int to,
-                 float        weight = 1); // from -> to
+    void AddEdge(uint from, uint to,
+                 float weight = 1); // from -> to
     // to -> from
 
-    T GetVertex(unsigned int vertex_id);
+    T GetVertex(uint vertex_id);
 
-    std::vector<float> Dijkstra(unsigned int src);
+    std::vector<float> Dijkstra(uint src);
+    std::vector<int>   DijkstraPath(uint src, uint target);
 
     void PrintGraph();
 };
 
 class IGraph {
         public:
-    virtual bool IsConnected(unsigned int origin, unsigned int target) = 0;
-    virtual int  ComponentsCount()                                     = 0;
+    virtual bool IsConnected(uint origin, uint target) = 0;
+    virtual int  ComponentsCount()                     = 0;
 };
 
 template <class T> class GraphWithBFS : public GraphBase<T>, public IGraph {
         public:
-    void Bfs(unsigned int origin, std::vector<bool> &visited);
+    void Bfs(uint origin, std::vector<bool> &visited);
 
-    bool IsConnected(unsigned int origin, unsigned int target) override;
+    bool IsConnected(uint origin, uint target) override;
     int  ComponentsCount() override;
 };
 
 template <class T> class GraphWithDFS : public GraphBase<T>, public IGraph {
         public:
-    void Dfs(unsigned int origin, std::vector<bool> &visited);
+    void Dfs(uint origin, std::vector<bool> &visited);
 
-    bool IsConnected(unsigned int origin, unsigned int target) override;
+    bool IsConnected(uint origin, uint target) override;
     int  ComponentsCount() override;
 };
 
