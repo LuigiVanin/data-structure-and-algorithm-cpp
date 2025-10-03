@@ -2,7 +2,13 @@ flag=$1
 test_target=$2
 for last; do true; done
 
-cmake -D CMAKE_BUILD_TYPE=Debug .
+debug_opt=""
+
+if [ "$flag" = "debug" ]; then
+    debug_opt="-D CMAKE_BUILD_TYPE=Debug"
+fi
+
+cmake ${debug_opt} .
 make 
 
 if [ "$flag" = "test" ]; then
