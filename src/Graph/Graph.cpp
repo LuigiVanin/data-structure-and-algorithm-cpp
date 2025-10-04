@@ -85,14 +85,26 @@ std::vector<float> GraphBase<T>::Dijkstra(uint src) {
 
     distances[src] = 0;
 
-    for (int i = 0; i < this->edges.Length(); i++) {
-        visited[i]        = true;
-        auto current_node = this->edges.At(i);
+    for (int _ = 0; _ < this->edges.Length(); _++) {
+
+        float current_dist = MAXFLOAT;
+        int   current_id   = -1;
+
+        for (int j = 0; j < this->edges.Length(); j++)
+            if (!visited[j] && (distances[j] < current_dist)) {
+                current_dist = distances[j];
+                current_id   = j;
+            }
+
+        if (current_id == -1) break;
+
+        visited[current_id] = true;
+        auto current_node   = this->edges.At(current_id);
 
         for (int j = 0; j < current_node->Length(); j++) {
-            auto target_node    = current_node->At(j);
-            auto current_weight = target_node.weight;
-            auto acc_distance   = distances[i] + current_weight;
+            GraphNode target_node  = current_node->At(j);
+            auto      weight       = target_node.weight;
+            auto      acc_distance = distances[current_id] + weight;
 
             if (acc_distance < distances[target_node.id]) {
                 distances[target_node.id] = acc_distance;
