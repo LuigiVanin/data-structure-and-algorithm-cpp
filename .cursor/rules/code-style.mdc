@@ -1,0 +1,169 @@
+---
+alwaysApply: true
+description: "Code style guidelines for the Data Structures and Algorithms C++ project"
+glob: "**/*.{cpp,h}"
+---
+
+# C++ Code Style Guide
+
+This document outlines the coding standards and style guidelines for the Data Structures and Algorithms C++ project.
+
+## Naming Conventions
+
+### Classes and Types
+- Use `PascalCase` for class names, structs, and type aliases
+- Template parameters should be in `PascalCase` and descriptive
+```cpp
+template<typename TKey, typename TValue>
+class Hashmap { }
+
+using NodePtr = std::shared_ptr<Node>;
+```
+
+### Methods and Functions
+- Public methods use `PascalCase`
+- Private and protected methods use `camelCase`
+- Function parameters use `snake_case`
+```cpp
+public:
+    void InsertNode(const T& value);
+    T GetFront() const;
+
+private:
+    void balanceTree();
+    Node* findNode(const T& search_value);
+```
+
+### Variables
+- Local variables use `snake_case`
+- Private class members use `camel_case_` with trailing underscore
+- Constants and enum values use `UPPER_SNAKE_CASE`
+```cpp
+class LinkedList {
+private:
+    Node* head_node_;
+    size_t current_size_;
+
+public:
+    void Traverse() {
+        Node* current_node = head_node_;
+        const size_t MAX_ITERATIONS = 1000;
+    }
+};
+```
+
+## Template Style
+
+### Template Declarations
+- One template parameter per line for multiple parameters
+- Single parameter templates can be on one line
+```cpp
+template<
+    typename TKey,
+    typename TValue,
+    typename THash = std::hash<TKey>>
+class Hashmap { };
+
+template<typename T>
+class ArrayList { };
+```
+
+## Class Structure
+
+### Member Order
+1. Public interface
+2. Protected members
+3. Private implementation
+4. Type aliases and constants at the top of their respective sections
+
+```cpp
+template<typename T>
+class BinarySearchTree {
+public:
+    using NodePtr = std::shared_ptr<Node>;
+    static const size_t MAX_DEPTH = 32;
+
+    // Public methods...
+
+protected:
+    // Protected members...
+
+private:
+    using NodePair = std::pair<Node*, Node*>;
+    
+    // Private members...
+};
+```
+
+## Error Handling
+
+### Exception Usage
+- Use custom exceptions from `utils/errors.h`
+- Throw exceptions for invalid operations
+- Document exceptions in method comments
+```cpp
+/**
+ * @throws EmptyContainerError if the list is empty
+ */
+T& Front() {
+    if (IsEmpty()) {
+        throw EmptyContainerError("Cannot access front of empty list");
+    }
+    return head_node_->value;
+}
+```
+
+## Memory Management
+
+### Smart Pointer Usage
+- Use `std::unique_ptr` for exclusive ownership
+- Use `std::shared_ptr` when sharing is required
+- Raw pointers only for non-owning references
+```cpp
+private:
+    std::unique_ptr<Node> root_;
+    Node* current_; // Non-owning pointer
+```
+
+## Modern C++ Features
+
+### General Guidelines
+- Use `nullptr` instead of `NULL` or `0`
+- Use `auto` for complex types and iterators
+- Use range-based for loops when possible
+- Use `[[nodiscard]]` for functions returning values
+```cpp
+[[nodiscard]] bool IsEmpty() const noexcept {
+    return size_ == 0;
+}
+
+for (const auto& element : *this) {
+    // Process element
+}
+```
+
+### Const Correctness
+- Mark methods as `const` when they don't modify object state
+- Use `const` references for parameters that shouldn't be modified
+- Use `const` iterators for read-only access
+```cpp
+void PrintList() const {
+    for (const auto& value : values_) {
+        std::cout << value << " ";
+    }
+}
+```
+
+## Testing Conventions
+
+### Test File Organization
+- Test files should mirror the structure of the source files
+- Use descriptive test case names in `snake_case`
+- Group related tests in test suites
+```cpp
+TEST_CASE("ArrayList basic operations", "[array_list]") {
+    SECTION("Push Back Increases Size") {
+        // Test implementation
+    }
+}
+```

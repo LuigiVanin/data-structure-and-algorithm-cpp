@@ -2,7 +2,9 @@
 #include "../ArrayList/ArrayList.h"
 #include "../Hashmap/Hashmap.h"
 #include "../LinkedQueue/LinkedQueue.h"
+#include <algorithm>
 #include <cmath>
+#include <stdexcept>
 #include <vector>
 
 template <class T> GraphBase<T>::GraphBase() {
@@ -80,6 +82,10 @@ void GraphBase<T>::PrintGraph() {
 
 template <class T> //
 std::vector<float> GraphBase<T>::Dijkstra(uint src) {
+    if (src >= this->edges.Length()) {
+        throw std::runtime_error("Invalid source or target vertex");
+    }
+
     std::vector<bool>  visited(this->edges.Length(), false);
     std::vector<float> distances(this->edges.Length(), MAXFLOAT);
 
@@ -87,13 +93,13 @@ std::vector<float> GraphBase<T>::Dijkstra(uint src) {
 
     for (int _ = 0; _ < this->edges.Length(); _++) {
 
-        float current_dist = MAXFLOAT;
-        int   current_id   = -1;
+        float min_dist   = MAXFLOAT;
+        int   current_id = -1;
 
         for (int j = 0; j < this->edges.Length(); j++)
-            if (!visited[j] && (distances[j] < current_dist)) {
-                current_dist = distances[j];
-                current_id   = j;
+            if (!visited[j] && (distances[j] < min_dist)) {
+                min_dist   = distances[j];
+                current_id = j;
             }
 
         if (current_id == -1) break;
@@ -102,17 +108,74 @@ std::vector<float> GraphBase<T>::Dijkstra(uint src) {
         auto current_node   = this->edges.At(current_id);
 
         for (int j = 0; j < current_node->Length(); j++) {
-            GraphNode target_node  = current_node->At(j);
-            auto      weight       = target_node.weight;
-            auto      acc_distance = distances[current_id] + weight;
+            GraphNode neighbor_node = current_node->At(j);
+            auto      weight        = neighbor_node.weight;
+            auto      acc_distance  = distances[current_id] + weight;
 
-            if (acc_distance < distances[target_node.id]) {
-                distances[target_node.id] = acc_distance;
+            if (acc_distance < distances[neighbor_node.id]) {
+                distances[neighbor_node.id] = acc_distance;
             }
         }
     }
 
     return distances;
+}
+
+template <class T> //
+std::vector<uint> GraphBase<T>::DijkstraPath(uint src, uint target) {
+    if (src >= this->edges.Length() || target >= this->edges.Length()) {
+        throw std::runtime_error("Invalid source or target vertex");
+    }
+
+    std::vector<bool>  visited(this->edges.Length(), false);
+    std::vector<float> distances(this->edges.Length(), MAXFLOAT);
+    std::vector<int>   predecessors(this->edges.Length(), -1);
+
+    distances[src] = 0;
+
+    for (int _ = 0; _ < this->edges.Length(); _++) {
+
+        float min_dist   = MAXFLOAT;
+        int   current_id = -1;
+
+        // This section tries to  find the minimun disrtance vertex between the
+        // unvisited neighbor vertices
+        for (int j = 0; j < this->edges.Length(); j++)
+            if (!visited[j] && (distances[j] < min_dist)) {
+                min_dist   = distances[j];
+                current_id = j;
+            }
+
+        if (current_id == -1) break;
+
+        visited[current_id] = true;
+        auto current_node   = this->edges.At(current_id);
+
+        for (int j = 0; j < current_node->Length(); j++) {
+            GraphNode neighbor_node = current_node->At(j);
+            auto      weight        = neighbor_node.weight;
+            auto      acc_distance  = distances[current_id] + weight;
+
+            if (acc_distance < distances[neighbor_node.id]) {
+                distances[neighbor_node.id]    = acc_distance;
+                predecessors[neighbor_node.id] = current_id;
+            }
+        }
+    }
+
+    std::vector<uint> path;
+    int               current = predecessors[target];
+
+    if (current != -1) path.push_back(target);
+
+    while (current != -1) {
+        path.push_back(current);
+        current = predecessors[current];
+    }
+
+    std::reverse(path.begin(), path.end());
+
+    return path;
 }
 
 template <class T>

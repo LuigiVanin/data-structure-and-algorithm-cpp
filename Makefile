@@ -205,6 +205,19 @@ project_DoublyLinkedList/fast:
 .PHONY : project_DoublyLinkedList/fast
 
 #=============================================================================
+# Target rules for targets named project_Graph
+
+# Build rule for target.
+project_Graph: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 project_Graph
+.PHONY : project_Graph
+
+# fast build rule for target.
+project_Graph/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_Graph.dir/build.make CMakeFiles/project_Graph.dir/build
+.PHONY : project_Graph/fast
+
+#=============================================================================
 # Target rules for targets named project_Hashmap
 
 # Build rule for target.
@@ -363,6 +376,30 @@ tests/DoublyLinkedList.test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_DoublyLinkedList.dir/build.make CMakeFiles/project_DoublyLinkedList.dir/tests/DoublyLinkedList.test.cpp.s
 .PHONY : tests/DoublyLinkedList.test.cpp.s
 
+tests/Graph.test.o: tests/Graph.test.cpp.o
+.PHONY : tests/Graph.test.o
+
+# target to build an object file
+tests/Graph.test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_Graph.dir/build.make CMakeFiles/project_Graph.dir/tests/Graph.test.cpp.o
+.PHONY : tests/Graph.test.cpp.o
+
+tests/Graph.test.i: tests/Graph.test.cpp.i
+.PHONY : tests/Graph.test.i
+
+# target to preprocess a source file
+tests/Graph.test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_Graph.dir/build.make CMakeFiles/project_Graph.dir/tests/Graph.test.cpp.i
+.PHONY : tests/Graph.test.cpp.i
+
+tests/Graph.test.s: tests/Graph.test.cpp.s
+.PHONY : tests/Graph.test.s
+
+# target to generate assembly for a file
+tests/Graph.test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_Graph.dir/build.make CMakeFiles/project_Graph.dir/tests/Graph.test.cpp.s
+.PHONY : tests/Graph.test.cpp.s
+
 tests/Hashmap.test.o: tests/Hashmap.test.cpp.o
 .PHONY : tests/Hashmap.test.o
 
@@ -450,6 +487,7 @@ help:
 	@echo "... project_ArrayStack"
 	@echo "... project_BinarySearchTree"
 	@echo "... project_DoublyLinkedList"
+	@echo "... project_Graph"
 	@echo "... project_Hashmap"
 	@echo "... project_LinkedList"
 	@echo "... project_LinkedQueue"
@@ -468,6 +506,9 @@ help:
 	@echo "... tests/DoublyLinkedList.test.o"
 	@echo "... tests/DoublyLinkedList.test.i"
 	@echo "... tests/DoublyLinkedList.test.s"
+	@echo "... tests/Graph.test.o"
+	@echo "... tests/Graph.test.i"
+	@echo "... tests/Graph.test.s"
 	@echo "... tests/Hashmap.test.o"
 	@echo "... tests/Hashmap.test.i"
 	@echo "... tests/Hashmap.test.s"

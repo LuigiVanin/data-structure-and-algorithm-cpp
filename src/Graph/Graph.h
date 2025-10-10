@@ -35,13 +35,14 @@ template <class T> class GraphBase {
     T GetVertex(uint vertex_id);
 
     std::vector<float> Dijkstra(uint src);
-    std::vector<int>   DijkstraPath(uint src, uint target);
+    std::vector<uint>  DijkstraPath(uint src, uint target);
 
     void PrintGraph();
 };
 
 class IGraph {
         public:
+    virtual ~IGraph()                                  = default;
     virtual bool IsConnected(uint origin, uint target) = 0;
     virtual int  ComponentsCount()                     = 0;
 };

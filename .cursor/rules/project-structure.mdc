@@ -1,0 +1,189 @@
+---
+alwaysApply: false
+---
+
+# Project Structure
+
+This document outlines the structure of the Data Structures and Algorithms C++ project.
+
+## Directory Structure
+
+```
+data-structure-and-algorithm-cpp/
+├── src/                        # Source code directory
+│   ├── main.cpp               # Main application entry point
+│   ├── ArrayList/             # Dynamic array implementation
+│   ├── ArrayStack/            # Stack implementation using array
+│   ├── BinarySearchTree/      # Binary search tree implementation
+│   ├── DoublyLinkedList/      # Doubly linked list implementation
+│   ├── Graph/                 # Graph data structure implementation
+│   ├── Hashmap/              # Hash map implementation
+│   ├── LinkedList/           # Singly linked list implementation
+│   ├── LinkedQueue/          # Queue implementation using linked list
+│   └── utils/                # Utility functions and common code
+│       ├── errors.h          # Error handling utilities
+│       └── option.h          # Optional value wrapper
+├── tests/                    # Test directory containing Catch2 tests
+└── CMakeLists.txt           # CMake build configuration
+```
+
+## Component Overview
+
+### Data Structures
+
+1. **ArrayList**
+   - Implementation of a dynamic array (vector-like) data structure
+   - Header-only implementation in `ArrayList.h`
+
+2. **ArrayStack**
+   - Stack implementation using array-based storage
+   - Header-only implementation in `ArrayStack.h`
+
+3. **BinarySearchTree**
+   - Binary search tree implementation
+   - Header-only implementation in `BinarySearchTree.h`
+
+4. **DoublyLinkedList**
+   - Doubly linked list with bidirectional traversal
+   - Components:
+     - `DoublyLinkedList.h`: Main implementation
+     - `DoublyLinkedNode.h`: Node structure
+
+5. **Graph**
+   - Graph data structure implementation
+   - Header-only implementation in `Graph.h`
+
+6. **Hashmap**
+   - Hash table implementation
+   - Components:
+     - `Hashmap.h`: Main implementation
+     - `Tuple.h`: Key-value pair structure
+
+7. **LinkedList**
+   - Singly linked list implementation
+   - Components:
+     - `LinkedList.h`: Main implementation
+     - `LinkedNode.h`: Node structure
+
+8. **LinkedQueue**
+   - Queue implementation using linked list
+   - Header-only implementation in `LinkedQueue.h`
+
+### Utilities
+
+The `utils/` directory contains common functionality used across the project:
+- `errors.h`: Error handling utilities and custom exceptions
+- `option.h`: Optional value wrapper for null safety
+
+### Testing
+
+- Tests are written using the Catch2 testing framework
+- Each data structure has its corresponding test file in the `tests/` directory
+- Tests are automatically discovered and built by CMake
+
+## Build System
+
+The project uses CMake (3.21+) as its build system with the following configuration:
+- C++23 standard required
+- Catch2 v3 as the testing framework
+- Separate library target (`data_structure_and_algorithm_cpp_lib`) for the data structures
+- Main executable target (`data_structure_and_algorithm_cpp`)
+- Automatic test discovery and registration
+
+## Implementation Notes
+
+- All data structures are implemented as header-only templates
+- Modern C++ features (C++23) are utilized throughout the codebase
+- Each data structure follows consistent error handling patterns using the utilities in `utils/`# Project Structure
+
+This document outlines the structure of the Data Structures and Algorithms C++ project.
+
+## Directory Structure
+
+```
+data-structure-and-algorithm-cpp/
+├── src/                        # Source code directory
+│   ├── main.cpp               # Main application entry point
+│   ├── ArrayList/             # Dynamic array implementation
+│   ├── ArrayStack/            # Stack implementation using array
+│   ├── BinarySearchTree/      # Binary search tree implementation
+│   ├── DoublyLinkedList/      # Doubly linked list implementation
+│   ├── Graph/                 # Graph data structure implementation
+│   ├── Hashmap/              # Hash map implementation
+│   ├── LinkedList/           # Singly linked list implementation
+│   ├── LinkedQueue/          # Queue implementation using linked list
+│   └── utils/                # Utility functions and common code
+│       ├── errors.h          # Error handling utilities
+│       └── option.h          # Optional value wrapper
+├── tests/                    # Test directory containing Catch2 tests
+└── CMakeLists.txt           # CMake build configuration
+```
+
+## Component Overview
+
+### Data Structures
+
+1. **ArrayList**
+   - Implementation of a dynamic array (vector-like) data structure
+   - Header-only implementation in `ArrayList.h`
+
+2. **ArrayStack**
+   - Stack implementation using array-based storage
+   - Header-only implementation in `ArrayStack.h`
+
+3. **BinarySearchTree**
+   - Binary search tree implementation
+   - Header-only implementation in `BinarySearchTree.h`
+
+4. **DoublyLinkedList**
+   - Doubly linked list with bidirectional traversal
+   - Components:
+     - `DoublyLinkedList.h`: Main implementation
+     - `DoublyLinkedNode.h`: Node structure
+
+5. **Graph**
+   - Graph data structure implementation
+   - Header-only implementation in `Graph.h`
+
+6. **Hashmap**
+   - Hash table implementation
+   - Components:
+     - `Hashmap.h`: Main implementation
+     - `Tuple.h`: Key-value pair structure
+
+7. **LinkedList**
+   - Singly linked list implementation
+   - Components:
+     - `LinkedList.h`: Main implementation
+     - `LinkedNode.h`: Node structure
+
+8. **LinkedQueue**
+   - Queue implementation using linked list
+   - Header-only implementation in `LinkedQueue.h`
+
+### Utilities
+
+The `utils/` directory contains common functionality used across the project:
+- `errors.h`: Error handling utilities and custom exceptions
+- `option.h`: Optional value wrapper for null safety
+
+### Testing
+
+- Tests are written using the Catch2 testing framework
+- Each data structure has its corresponding test file in the `tests/` directory
+- Tests are automatically discovered and built by CMake
+
+## Build System
+
+The project uses CMake (3.21+) as its build system with the following configuration:
+- C++23 standard required
+- Catch2 v3 as the testing framework
+- Separate library target (`data_structure_and_algorithm_cpp_lib`) for the data structures
+- Main executable target (`data_structure_and_algorithm_cpp`)
+- Automatic test discovery and registration
+
+## Implementation Notes
+
+- All data structures are implemented as header-only templates
+- Modern C++ features (C++23) are utilized throughout the codebase
+- Each data structure follows consistent error handling patterns using the utilities in `utils/`
