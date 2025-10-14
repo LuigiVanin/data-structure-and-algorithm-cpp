@@ -29,6 +29,7 @@ add_library(
         src/Hashmap/Tuple.h
         src/BinarySearchTree/BinarySearchTree.h
         src/Graph/Graph.h
+        src/Sorting/Sorting.h
         src/utils/errors.h
         src/utils/option.h
 )
