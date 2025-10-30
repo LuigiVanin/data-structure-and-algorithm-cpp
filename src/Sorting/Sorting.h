@@ -3,7 +3,7 @@
 #define SORTING_H
 
 #include "../ArrayList/ArrayList.h"
-#include <functional>
+#include <ostream>
 
 namespace sorting {
 
@@ -16,22 +16,44 @@ int DefaultCompareFunction(T a, T b) {
     return 0;
 }
 
-template <class T> //
-void BubbleSort(ArrayList<T>            *array,
-                std::function<int(T, T)> compare = DefaultCompareFunction<T>);
+template <typename T> void swapIndex(T *arr, int i, int j) {
 
-template <class T> //
-void InsertionSort(
-    ArrayList<T>            *array,
-    std::function<int(T, T)> compare = DefaultCompareFunction<T>);
+    auto temp = arr[i];
+    arr[i]    = arr[j];
+    arr[j]    = temp;
+}
 
-template <class T> //
-void QuickSort(ArrayList<T>            *array,
-               std::function<int(T, T)> compare = DefaultCompareFunction<T>);
+template <class T, typename Compare = decltype(DefaultCompareFunction<T>)>
+void BubbleSort(ArrayList<T> *list,
+                Compare       compare = DefaultCompareFunction<T>) {
+    T *array = list->GetArray();
 
-template <class T> //
-void BogoSort(ArrayList<T>            *array,
-              std::function<int(T, T)> compare = DefaultCompareFunction<T>);
+    for (int i = 0; i < list->Length(); i++) {
+        for (int j = 0; j < list->Length() - i - 1; j++) {
+            auto comparisonResult = compare(array[j], array[j + 1]);
+
+            if (comparisonResult > 0) swapIndex(array, j, j + 1);
+        }
+    }
+}
+
+template <class T, typename Compare = decltype(DefaultCompareFunction<T>)>
+void InsertionSort(ArrayList<T> *list,
+                   Compare       compare = DefaultCompareFunction<T>) {
+
+    T *array = list->GetArray();
+
+    for (int i = 0; i < list->Length(); i++) {
+        for (int j = i - 1; j >= 0; j--) {
+        }
+    }
+}
+
+template <class T, typename Compare = decltype(DefaultCompareFunction<T>)>
+void QuickSort(ArrayList<T> *array,
+               Compare       compare = DefaultCompareFunction<T>) {
+    // Implementation here
+}
 
 } // namespace sorting
 
