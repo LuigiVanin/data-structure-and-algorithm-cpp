@@ -22,7 +22,14 @@ int main() {
     list->Push(1000);
 
     list->Print();
-    sorting::BubbleSort(list);
+    // sorting::BubbleSort(list);
+    sorting::InsertionSort(list, [](int a, int b) -> int {
+        if (a < b)
+            return 1;
+        else if (a > b)
+            return -1;
+        return 0;
+    });
     list->Print();
 
     return 0;

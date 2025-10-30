@@ -256,6 +256,19 @@ project_LinkedQueue/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_LinkedQueue.dir/build.make CMakeFiles/project_LinkedQueue.dir/build
 .PHONY : project_LinkedQueue/fast
 
+#=============================================================================
+# Target rules for targets named project_Sorting
+
+# Build rule for target.
+project_Sorting: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 project_Sorting
+.PHONY : project_Sorting
+
+# fast build rule for target.
+project_Sorting/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_Sorting.dir/build.make CMakeFiles/project_Sorting.dir/build
+.PHONY : project_Sorting/fast
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -472,6 +485,30 @@ tests/LinkedQueue.test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_LinkedQueue.dir/build.make CMakeFiles/project_LinkedQueue.dir/tests/LinkedQueue.test.cpp.s
 .PHONY : tests/LinkedQueue.test.cpp.s
 
+tests/Sorting.test.o: tests/Sorting.test.cpp.o
+.PHONY : tests/Sorting.test.o
+
+# target to build an object file
+tests/Sorting.test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_Sorting.dir/build.make CMakeFiles/project_Sorting.dir/tests/Sorting.test.cpp.o
+.PHONY : tests/Sorting.test.cpp.o
+
+tests/Sorting.test.i: tests/Sorting.test.cpp.i
+.PHONY : tests/Sorting.test.i
+
+# target to preprocess a source file
+tests/Sorting.test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_Sorting.dir/build.make CMakeFiles/project_Sorting.dir/tests/Sorting.test.cpp.i
+.PHONY : tests/Sorting.test.cpp.i
+
+tests/Sorting.test.s: tests/Sorting.test.cpp.s
+.PHONY : tests/Sorting.test.s
+
+# target to generate assembly for a file
+tests/Sorting.test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_Sorting.dir/build.make CMakeFiles/project_Sorting.dir/tests/Sorting.test.cpp.s
+.PHONY : tests/Sorting.test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -491,6 +528,7 @@ help:
 	@echo "... project_Hashmap"
 	@echo "... project_LinkedList"
 	@echo "... project_LinkedQueue"
+	@echo "... project_Sorting"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
@@ -518,6 +556,9 @@ help:
 	@echo "... tests/LinkedQueue.test.o"
 	@echo "... tests/LinkedQueue.test.i"
 	@echo "... tests/LinkedQueue.test.s"
+	@echo "... tests/Sorting.test.o"
+	@echo "... tests/Sorting.test.i"
+	@echo "... tests/Sorting.test.s"
 .PHONY : help
 
 
