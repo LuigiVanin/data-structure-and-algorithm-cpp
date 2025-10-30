@@ -6,7 +6,7 @@
 
 namespace sorting {
 
-template <class T> //
+template <class T>
 int _defaultCompare(T a, T b) {
     if (a < b)
         return -1;
@@ -15,7 +15,7 @@ int _defaultCompare(T a, T b) {
     return 0;
 }
 
-template <typename T> //
+template <typename T>
 void _swapIndex(T *arr, int i, int j) {
     auto temp = arr[i];
     arr[i]    = arr[j];

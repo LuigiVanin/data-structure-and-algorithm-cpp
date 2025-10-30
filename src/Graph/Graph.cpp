@@ -7,17 +7,20 @@
 #include <stdexcept>
 #include <vector>
 
-template <class T> GraphBase<T>::GraphBase() {
+template <class T>
+GraphBase<T>::GraphBase() {
     std::cout << "Teste" << std::endl;
     // this->edges = ArrayList<ArrayList<GraphNode> *>();
     std::cout << "Teste" << this->edges.Length() << std::endl;
 }
 
-template <class T> GraphBase<T>::~GraphBase() {
+template <class T>
+GraphBase<T>::~GraphBase() {
     for (int i = 0; i < edges.Length(); ++i) delete this->edges.At(i);
 }
 
-template <class T> uint GraphBase<T>::AddVertex(T content) {
+template <class T>
+uint GraphBase<T>::AddVertex(T content) {
     auto empty = new ArrayList<GraphNode>();
     this->edges.Push(empty);
 
@@ -60,7 +63,7 @@ void GraphBase<T>::AddDirectionalEdge(uint from, uint to, float weight) {
     this->edges.At(from)->Push(to_node);
 }
 
-template <class T> //
+template <class T>
 T GraphBase<T>::GetVertex(uint vertex_id) {
     Option<T> value = this->content_table.Get(vertex_id);
 
@@ -69,7 +72,7 @@ T GraphBase<T>::GetVertex(uint vertex_id) {
     return value.Unwrap();
 }
 
-template <class T> //
+template <class T>
 void GraphBase<T>::PrintGraph() {
     for (int i = 0; i < this->edges.Length(); i++) {
         std::cout << i << ": ";
@@ -80,7 +83,7 @@ void GraphBase<T>::PrintGraph() {
     }
 }
 
-template <class T> //
+template <class T>
 std::vector<float> GraphBase<T>::Dijkstra(uint src) {
     if (src >= this->edges.Length()) {
         throw std::runtime_error("Invalid source or target vertex");
@@ -121,7 +124,7 @@ std::vector<float> GraphBase<T>::Dijkstra(uint src) {
     return distances;
 }
 
-template <class T> //
+template <class T>
 std::vector<uint> GraphBase<T>::DijkstraPath(uint src, uint target) {
     if (src >= this->edges.Length() || target >= this->edges.Length()) {
         throw std::runtime_error("Invalid source or target vertex");
@@ -190,7 +193,8 @@ void GraphWithDFS<T>::Dfs(uint origin, std::vector<bool> &visited) {
     }
 }
 
-template <class T> bool GraphWithDFS<T>::IsConnected(uint origin, uint target) {
+template <class T>
+bool GraphWithDFS<T>::IsConnected(uint origin, uint target) {
     std::vector<bool> visited(this->edges.Length(), false);
 
     this->Dfs(origin, visited);
@@ -198,7 +202,7 @@ template <class T> bool GraphWithDFS<T>::IsConnected(uint origin, uint target) {
     return visited[target];
 }
 
-template <class T> //
+template <class T>
 int GraphWithDFS<T>::ComponentsCount() {
     int counter = 0;
 
@@ -246,7 +250,8 @@ inline bool GraphWithBFS<T>::IsConnected(uint origin, uint target) {
     return visited[target];
 }
 
-template <class T> int GraphWithBFS<T>::ComponentsCount() {
+template <class T>
+int GraphWithBFS<T>::ComponentsCount() {
     int counter = 0;
 
     std::vector<bool> visited(this->edges.Length(), false);

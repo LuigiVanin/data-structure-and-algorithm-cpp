@@ -13,7 +13,8 @@ struct GraphNode {
     uint  id;
 };
 
-template <class T> class GraphBase {
+template <class T>
+class GraphBase {
         private:
     uint amount = 0;
 
@@ -47,7 +48,8 @@ class IGraph {
     virtual int  ComponentsCount()                     = 0;
 };
 
-template <class T> class GraphWithBFS : public GraphBase<T>, public IGraph {
+template <class T>
+class GraphWithBFS : public GraphBase<T>, public IGraph {
         public:
     void Bfs(uint origin, std::vector<bool> &visited);
 
@@ -55,7 +57,8 @@ template <class T> class GraphWithBFS : public GraphBase<T>, public IGraph {
     int  ComponentsCount() override;
 };
 
-template <class T> class GraphWithDFS : public GraphBase<T>, public IGraph {
+template <class T>
+class GraphWithDFS : public GraphBase<T>, public IGraph {
         public:
     void Dfs(uint origin, std::vector<bool> &visited);
 
