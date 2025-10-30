@@ -8,11 +8,7 @@ namespace sorting {
 
 template <class T>
 int _defaultCompare(T a, T b) {
-    if (a < b)
-        return -1;
-    else if (a > b)
-        return 1;
-    return 0;
+    return a - b;
 }
 
 template <typename T>
@@ -58,11 +54,45 @@ void InsertionSort(ArrayList<T>                *list,
 }
 
 template <class T>
-void QuickSort(ArrayList<T>                *array,
+void QuickSort(ArrayList<T>                *list,
+               int                          start,
+               int                          end,
                decltype(_defaultCompare<T>) compare = _defaultCompare<T>) {
     // Implementation here
+    if (end > start) {
+        // NOTE:
+        //      There is many ways to choose the initial pivot, in this case
+        //      the last item will always be the pivot of the pertition
+        T  *array      = list->GetArray();
+        T   pivot      = list->At(end);
+        int pivotIndex = start;
+
+        for (int i = start; i < end; i++) {
+            auto comparisonResult = compare(pivot, array[i]);
+            if (comparisonResult > 0) {
+                _swapIndex(array, i, pivotIndex);
+                pivotIndex++;
+            }
+        }
+
+        _swapIndex(array, pivotIndex, end);
+
+        QuickSort(list, start, pivotIndex - 1, compare);
+        QuickSort(list, pivotIndex + 1, end, compare);
+    }
+}
+
+template <class T>
+void QuickSort(ArrayList<T>                *list,
+               decltype(_defaultCompare<T>) compare = _defaultCompare<T>) {
+    // Implementation here
+    int start = 0, end = list->Length() - 1;
+    QuickSort(list, start, end, compare);
 }
 
 } // namespace sorting
+
+// template <class T>
+// void QuickSortPartition()
 
 #endif

@@ -15,22 +15,16 @@ int main() {
     auto list = new ArrayList<int>();
 
     list->Push(15);
-    list->Push(19);
+    list->Push(100);
     list->Push(120);
     list->Push(15);
     list->Push(1);
-    list->Push(1000);
+    list->Push(19);
 
     list->Print();
     // sorting::BubbleSort(list);
-    sorting::InsertionSort(list, [](int a, int b) -> int {
-        if (a < b)
-            return 1;
-        else if (a > b)
-            return -1;
-        return 0;
-    });
-    list->Print();
+    sorting::QuickSort(list);
+    // list->Print();
 
     return 0;
 }
