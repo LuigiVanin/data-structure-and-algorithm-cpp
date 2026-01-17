@@ -23,8 +23,9 @@ int main() {
 
     list->Print();
     // sorting::BubbleSort(list);
-    sorting::QuickSort(list);
-    // list->Print();
+    // sorting::QuickSort(list);
+    sorting::SelectionSort(list);
+    list->Print();
 
     return 0;
 }

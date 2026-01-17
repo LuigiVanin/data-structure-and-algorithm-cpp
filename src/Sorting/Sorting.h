@@ -54,6 +54,23 @@ void InsertionSort(ArrayList<T>                *list,
 }
 
 template <class T>
+void SelectionSort(ArrayList<T>                *list,
+                   decltype(_defaultCompare<T>) compare = _defaultCompare<T>) {
+
+    T *array = list->GetArray();
+
+    for (int i = 0; i < list->Length() - 1; i++) {
+        int max = 0;
+
+        for (int j = 0; j < list->Length() - i; j++) {
+            if (compare(array[j], array[max]) > 0) max = j;
+        }
+
+        _swapIndex(array, max, list->Length() - i - 1);
+    }
+}
+
+template <class T>
 void QuickSort(ArrayList<T>                *list,
                int                          start,
                int                          end,
