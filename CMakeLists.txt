@@ -28,6 +28,8 @@ add_library(
         src/Hashmap/Hashmap.h
         src/Hashmap/Tuple.h
         src/BinarySearchTree/BinarySearchTree.h
+        src/AvlTree/AvlTree.h
+        src/AvlTree/AvlNode.h
         src/Graph/Graph.h
         src/Sorting/Sorting.h
         src/utils/errors.h

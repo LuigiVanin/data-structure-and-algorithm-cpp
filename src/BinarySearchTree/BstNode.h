@@ -6,21 +6,20 @@
 
 template <class T>
     requires std::totally_ordered<T>
-class BstNode
-{
+class BstNode {
 
 public:
     BstNode(T value);
     ~BstNode();
 
-    T GetValue();
+    T           GetValue();
     BstNode<T> *GetParent();
 
     void SetParent(BstNode *node);
 
-    BstNode<T> *left = nullptr;
+    BstNode<T> *left  = nullptr;
     BstNode<T> *right = nullptr;
-    T value;
+    T           value;
 
 private:
     BstNode<T> *parent = nullptr;

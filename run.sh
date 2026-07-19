@@ -2,13 +2,17 @@ flag=$1
 test_target=$2
 for last; do true; done
 
+# Build with clang/clang++ so the compiler matches the clangd IDE analyzer.
+CC="-D CMAKE_C_COMPILER=clang -D CMAKE_CXX_COMPILER=clang++"
+CC=""
+
 debug_opt=""
 
 if [ "$flag" = "debug" ]; then
     debug_opt="-D CMAKE_BUILD_TYPE=Debug"
 fi
 
-cmake ${debug_opt} .
+cmake ${debug_opt} ${CC} .
 make 
 
 if [ "$flag" = "test" ]; then
