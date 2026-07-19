@@ -21,6 +21,7 @@ int main() {
 
     std::cout << depth << std::endl;
 
+    tree->Insert(10);
     // list->Push(15);
     // list->Push(100);
     // list->Push(120);

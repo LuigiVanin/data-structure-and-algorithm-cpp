@@ -216,16 +216,10 @@ This project is available for educational purposes. See `license.md` for details
 
 ## 🔮 Future Enhancements
 
-- [ ] Complete QuickSort implementation
+- [x] Complete QuickSort implementation
 - [ ] Add Merge Sort and Heap Sort
 - [ ] Implement AVL Tree (self-balancing BST)
-- [ ] Add Red-Black Tree
 - [ ] Implement Trie data structure
-- [x] Add more graph algorithms (BFS, DFS, MST)
+- [x] Add more graph algorithms (BFS, DFS)
 - [ ] More comprehensive documentation
-
-
----
-
-**Happy Coding!** 🚀
 
