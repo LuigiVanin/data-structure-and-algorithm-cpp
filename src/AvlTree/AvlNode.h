@@ -1,6 +1,7 @@
 #ifndef AVLNODE_H
 #define AVLNODE_H
 #include <concepts>
+#include <sys/types.h>
 
 #pragma once
 template <class T>
@@ -15,8 +16,9 @@ public:
 
     void SetParent(AvlNode *node);
 
-    AvlNode<T> *left  = nullptr;
-    AvlNode<T> *right = nullptr;
+    uint        height = 1;
+    AvlNode<T> *left   = nullptr;
+    AvlNode<T> *right  = nullptr;
     T           value;
 
 private:

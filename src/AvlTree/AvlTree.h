@@ -22,8 +22,22 @@ public:
 
 private:
     int         amount = 0;
-    int         depth  = 0;
     AvlNode<T> *root   = nullptr;
+
+    uint        height(AvlNode<T> *node);
+    int         balanceFactor(AvlNode<T> *node);
+    void        updateHeight(AvlNode<T> *node);
+
+    AvlNode<T> *rotateRight(AvlNode<T> *node);
+    AvlNode<T> *rotateLeft(AvlNode<T> *node);
+    AvlNode<T> *balance(AvlNode<T> *node);
+
+    AvlNode<T> *minimum(AvlNode<T> *node);
+    void        replaceChild(AvlNode<T> *parent,
+                             AvlNode<T> *oldChild,
+                             AvlNode<T> *newChild);
+
+    void backtrack(AvlNode<T> *current);
 };
 
 #include "AvlTree.cpp"

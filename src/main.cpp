@@ -22,6 +22,21 @@ int main() {
     std::cout << depth << std::endl;
 
     tree->Insert(10);
+    tree->Insert(15);
+    tree->Insert(17);
+    tree->Insert(20);
+    tree->Insert(29);
+
+    tree->Insert(1);
+    tree->Insert(2);
+    tree->Insert(3);
+    tree->Insert(4);
+    tree->Insert(5);
+    tree->Insert(6);
+    tree->Insert(7);
+
+    std::cout << "Hello, World!" << tree->GetRoot()->height << std::endl;
+
     // list->Push(15);
     // list->Push(100);
     // list->Push(120);

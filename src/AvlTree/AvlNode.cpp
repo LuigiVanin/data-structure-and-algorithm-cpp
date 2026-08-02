@@ -7,6 +7,7 @@ AvlNode<T>::AvlNode(T value) {
     this->left   = nullptr;
     this->right  = nullptr;
     this->parent = nullptr;
+    this->height = 1;
 }
 
 template <class T>
